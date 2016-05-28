@@ -1,0 +1,307 @@
+﻿@model App.ViewModels.FormularioRequisicion
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int Numero = 1;
+    decimal SubTotal = 0;
+    decimal Total = 0;
+}
+
+<h1></h1>
+@using (Html.BeginForm("Update", "Form", FormMethod.Post))
+{
+    @Html.Hidden("Moneda", Model.Requsiciones.FirstOrDefault().MonedaId)
+    @Html.Hidden("Descripcion", Model.Requsiciones.FirstOrDefault().Descripcion)
+    @Html.Hidden("FechaEntrega", Model.Requsiciones.FirstOrDefault().FechaEntrega)
+    @Html.Hidden("Comentarios", Model.Requsiciones.FirstOrDefault().Comentarios)
+    @Html.Hidden("PrioridadId", Model.Requsiciones.FirstOrDefault().PrioridadId)
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1 class="panel-title">Requisicion</h1>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div style="margin-top:40px; margin-bottom:40px;" class="container">
+                        <label>AQUI VA EL LOGO</label>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Creado por: </label>
+                            </div>
+                            <div class="col-md-2">
+                                <p>@Model.Requsiciones.FirstOrDefault().CreadoPor</p>
+                                @Html.Hidden("ReqCreadoPor", Model.Requsiciones.FirstOrDefault().CreadoPor)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Fecha de Creacion: </label>
+                            </div>
+                            <div class="col-md-2">
+                                <p>@Model.Requsiciones.FirstOrDefault().Creado</p>
+                                @Html.Hidden("ReqFechaCreacion", Model.Requsiciones.FirstOrDefault().Creado)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Departamento: </label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <div class="selectContainer">
+                                        <select name="Departamento">
+                                            @foreach (var item in Model.Departamentos)
+                                            {
+                                                <option value="@Html.DisplayFor(modelItem => item.Nombre)">@Html.DisplayFor(modelItem => item.Nombre)</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Actualizado por: </label>
+                            </div>
+                            <div class="col-md-2">
+                                <p>@Model.Requsiciones.FirstOrDefault().ActualizadoPor</p>
+                                @Html.Hidden("ReqActualizadoPor", Model.Requsiciones.FirstOrDefault().ActualizadoPor)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Fecha de Actualizacion: </label>
+                            </div>
+                            <div class="col-md-2">
+                                <p>@Model.Requsiciones.FirstOrDefault().Actualizado</p>
+                                @Html.Hidden("ReqFechaActualizacion", Model.Requsiciones.FirstOrDefault().Actualizado)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-4">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>No. Requisicion: </label>
+                            </div>
+                            <div class="col-md-2">
+                                <p>@Model.Requsiciones.FirstOrDefault().Id</p>
+                                @Html.Hidden("ReqId", Model.Requsiciones.FirstOrDefault().Id)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Proveedor: </label>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <div class="selectContainer">
+                                        <select name="Proveedor">
+                                            @foreach (var item in Model.Proveedores)
+                                            {
+                                                <option value="@Html.DisplayFor(modelItem => item.Nombre)">@Html.DisplayFor(modelItem => item.Nombre)</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Fecha de Requisicion: </label>
+                            </div>
+                            <div class="col-md-2">
+                                <p>@Model.Requsiciones.FirstOrDefault().FechaRequisicion</p>
+                                @Html.Hidden("FechaRequisicion", Model.Requsiciones.FirstOrDefault().FechaRequisicion)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Estatus: </label>
+                            </div>
+                            <div class="col-md-2">
+                                <p>@Model.Requsiciones.FirstOrDefault().EstatusId</p>
+                                @Html.Hidden("EstatusId", Model.Requsiciones.FirstOrDefault().EstatusId)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Periodo: </label>
+                            </div>
+                            <div class="col-md-2">
+                                <p>@Model.Requsiciones.FirstOrDefault().PeriodoId</p>
+                                @Html.Hidden("PeriodoId", Model.Requsiciones.FirstOrDefault().PeriodoId)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <table style="margin-top: 30px; margin-bottom: 50px;" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                No. Parte
+                            </th>
+                            <th>
+                                Cantidad
+                            </th>
+                            <th>
+                                Precio Venta
+                            </th>
+                            <th>
+                                Interes
+                            </th>
+                            <th>
+                                Subtotal
+                            </th>
+                            <th>
+                                Total
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Lineas)
+                        {
+                            <tr>
+                                <td>
+                                    @Numero
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    @Html.TextBox("Cantidad" + Numero.ToString())
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PrecioVenta)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Requisicion.Interes)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Requisicion.SubTotal)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Requisicion.GranTotal)
+                                </td>
+                            </tr>
+
+                            Numero++;
+                            SubTotal = SubTotal + item.Requisicion.SubTotal;
+                            Total = Total + item.Requisicion.GranTotal;
+                        }
+                        @Html.Hidden("TotalLineas", Numero)
+                        @Html.Hidden("SubTotal", SubTotal)
+                        @Html.Hidden("Total", Total)
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="container">
+                    <div class="col-md-3">
+                        <div class="row">
+                            <label>Nombre</label>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                        <div class="row">
+                            <label>Firma</label>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row">
+                            <label>Nombre</label>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                        <div class="row">
+                            <label>Firma</label>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row">
+                            <label>Nombre</label>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                        <div class="row">
+                            <label>Firma</label>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row">
+                            <label>Nombre</label>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                        <div class="row">
+                            <label>Firma</label>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="col-md-offset-11">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

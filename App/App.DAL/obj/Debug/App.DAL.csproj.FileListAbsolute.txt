@@ -1,0 +1,14 @@
+C:\Users\alan\Desktop\App\App.DAL\bin\Debug\App.DAL.dll
+C:\Users\alan\Desktop\App\App.DAL\bin\Debug\App.DAL.pdb
+C:\Users\alan\Desktop\App\App.DAL\obj\Debug\App.DAL.csprojResolveAssemblyReference.cache
+C:\Users\alan\Desktop\App\App.DAL\obj\Debug\App.DAL.dll
+C:\Users\alan\Desktop\App\App.DAL\obj\Debug\App.DAL.pdb
+C:\Users\alan\Desktop\App\App.DAL\bin\Debug\App.DAL.dll.config
+C:\Users\alan\Desktop\App\App.DAL\bin\Debug\EntityFramework.dll
+C:\Users\alan\Desktop\App\App.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\alan\Desktop\App\App.DAL\bin\Debug\EntityFramework.xml
+C:\Users\alan\Desktop\App\App.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\alan\Desktop\App\App.DAL\bin\Debug\App.Entities.dll
+C:\Users\alan\Desktop\App\App.DAL\bin\Debug\App.Entities.pdb
+C:\Users\alan\Desktop\App\App.DAL\obj\Debug\App.DAL.Migrations.Init.resources
+C:\Users\alan\Desktop\App\App.DAL\obj\Debug\App.DAL.csproj.GenerateResource.Cache
