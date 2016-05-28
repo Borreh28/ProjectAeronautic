@@ -27,9 +27,21 @@ namespace App.DAL
             return db.Lineas.Where(w => w.RequisicionId == id).ToList();
         }
 
+        public void Add(RequisicionLinea data)
+        {
+            db.Lineas.Add(data);
+            db.SaveChanges();
+        }
+
         public void Update(RequisicionLinea data)
         {
             db.Entry(data).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public void Delete(RequisicionLinea data)
+        {
+            db.Lineas.Remove(data);
             db.SaveChanges();
         }
     }
