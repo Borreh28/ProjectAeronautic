@@ -1,0 +1,74 @@
+﻿@model IEnumerable<App.Entities.Requisicion>
+
+@{
+    ViewBag.Title = "All";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="container">
+        <a href="@Url.Action("Add", "Requisition")" class="btn-sm btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Crear nueva requisicion</a>
+    </div>
+</div>
+<table style="margin-top:20px;" class="table table-striped">
+    <tr>
+        <th>
+            No Requisicion
+        </th>
+        <th>
+            Departamento
+        </th>
+        <th>
+            Proveedor
+        </th>
+        <th>
+            Estatus
+        </th>
+        <th>
+            Total de Lineas
+        </th>
+        <th>
+            Fecha Requisicion
+        </th>
+        <th>
+            Fecha Entrega
+        </th>
+        <th>
+            Prioridad
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Departamento.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proveedor.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstatusId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalLineas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaRequisicion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaEntrega)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrioridadId)
+        </td>
+        <td>
+            <a href="@Url.Action("Details", "Requisition", new { id = item.Id })"><span class="glyphicon glyphicon-list-alt"></span></a>
+        </td>
+    </tr>
+}
+</table>

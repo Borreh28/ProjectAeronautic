@@ -34,7 +34,43 @@ namespace App.Controllers
 
         public ActionResult All()
         {
+            var model = rr.GetAll();
+
+            return View(model);
+        }
+
+        public ActionResult Details(int id)
+        {
+            fr.Requsiciones = rr.GetById(id);
+            fr.Lineas = rlr.GetByIdRequisicion(id);
+
+            return View(fr);
+        }
+
+        public ActionResult Add()
+        {
             return View();
+        }
+
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(FormCollection form)
+        {
+            return RedirectToAction("Details", new { });
+        }
+
+        [HttpPost]
+        public ActionResult Delete(FormCollection form)
+        {
+            r.Id = Int32.Parse(form["Id"]);
+
+            rr.Delete(r.Id);
+
+            return RedirectToAction("All");
         }
     }
 }

@@ -1,0 +1,305 @@
+﻿@model App.ViewModels.FormularioRequisicion
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int Numero = 1;
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-2 pull-left">
+                <h1 class="panel-title">Requisicion</h1>
+            </div>
+            @*<div class="col-md-7"></div>
+            <div class="col-md-3 pull-right">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="@Url.Action("Edit","Requisition", new { id = Model.Requsiciones.FirstOrDefault().Id })" class="panel-title"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+                &nbsp;&nbsp;
+                <a href="#Delete" class="btn btn-primary" data-toggle="modal" data-target="#ConfirmDeleteModal"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+            </div>*@
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <div style="margin-top:40px; margin-bottom:40px;" class="container">
+                    <label>AQUI VA EL LOGO</label>
+                </div>
+            </div>
+            <div class="col-md-9">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Creado por: </label>
+                        </div>
+                        <div class="col-md-2">
+                            <p>@Model.Requsiciones.FirstOrDefault().CreadoPor</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Fecha de Creacion: </label>
+                        </div>
+                        <div class="col-md-2">
+                            <p>@Model.Requsiciones.FirstOrDefault().Creado</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Departamento: </label>
+                        </div>
+                        <div class="col-md-2">
+                            <p>@Model.Requsiciones.FirstOrDefault().Departamento.Nombre</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Actualizado por: </label>
+                        </div>
+                        <div class="col-md-2">
+                            <p>@Model.Requsiciones.FirstOrDefault().ActualizadoPor</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Fecha de Actualizacion: </label>
+                        </div>
+                        <div class="col-md-2">
+                            <p>@Model.Requsiciones.FirstOrDefault().Actualizado</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>No. Requisicion: </label>
+                        </div>
+                        <div class="col-md-2">
+                            <p>@Model.Requsiciones.FirstOrDefault().Id</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Proveedor: </label>
+                        </div>
+                        <div class="col-md-2">
+                            <p>@Model.Requsiciones.FirstOrDefault().Proveedor.Nombre</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Fecha de Requisicion: </label>
+                        </div>
+                        <div class="col-md-2">
+                            <p>@Model.Requsiciones.FirstOrDefault().FechaRequisicion</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Estatus: </label>
+                        </div>
+                        <div class="col-md-2">
+                            <p>@Model.Requsiciones.FirstOrDefault().EstatusId</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Periodo: </label>
+                        </div>
+                        <div class="col-md-2">
+                            <p>@Model.Requsiciones.FirstOrDefault().PeriodoId</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <table style="margin-top: 30px; margin-bottom: 50px;" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            No. Parte
+                        </th>
+                        <th>
+                            Cantidad
+                        </th>
+                        <th>
+                            Precio Venta
+                        </th>
+                        <th>
+                            Interes
+                        </th>
+                        <th>
+                            Subtotal
+                        </th>
+                        <th>
+                            Total
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Lineas)
+                    {
+                        <tr>
+                            <td>
+                                @Numero
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cantidad)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PrecioVenta)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Requisicion.Interes)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Requisicion.SubTotal)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Requisicion.GranTotal)
+                            </td>
+                        </tr>
+
+                        Numero++;
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-md-3">
+                    <div class="row">
+                        <label>Nombre</label>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                    <div class="row">
+                        <label>Firma</label>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <label>Nombre</label>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                    <div class="row">
+                        <label>Firma</label>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <label>Nombre</label>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                    <div class="row">
+                        <label>Firma</label>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <label>Nombre</label>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                    <div class="row">
+                        <label>Firma</label>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md-9"></div>
+            <div class="col-md-3 pull-right">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="@Url.Action("Edit", "Requisition", new { id = Model.Requsiciones.FirstOrDefault().Id})" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+                &nbsp;&nbsp;
+                <a href="#Delete" class="btn btn-primary" data-toggle="modal" data-target="#ConfirmDeleteModal"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ConfirmDeleteModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" style="transform:translate(0px,50px);">
+            @using (Html.BeginForm("Delete", "Requisition", FormMethod.Post))
+            {
+                @Html.Hidden("Id", Model.Requsiciones.FirstOrDefault().Id)
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dissmiss="modal">&times;</button>
+                    <h3 class="modal-title">Eliminar Requisicion</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Esta seguro que desea eliminar esta requisicion?</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary" value="Si, deseo eliminarla." />
+                    <button type="button" class="btn btn-default" data-dissmiss="modal">No, deseo conservarla.</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

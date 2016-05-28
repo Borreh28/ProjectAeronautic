@@ -16,7 +16,7 @@ namespace App
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Form", action = "Details", id = UrlParameter.Optional }
+                defaults: new { controller = "Requisition", action = "All", id = UrlParameter.Optional }
             );
         }
     }
