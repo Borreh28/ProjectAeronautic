@@ -1,0 +1,164 @@
+﻿@model App.ViewModels.FormularioRequisicion
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .row
+    {
+        margin-top:10px;
+        margin-bottom:10px;
+    }
+</style>
+
+<h1>Nueva Requisicion</h1>
+<br />
+<p class="text-danger">Todos los campos son obligatorios*</p>
+<br />
+@using (Html.BeginForm("Add", "Requisition", FormMethod.Post))
+{
+    <div class="row">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-4">
+                    <label>No. Requisicion: </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" style="width:100%;" name="ReqId" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-4">
+                    <label>Periodo: </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" style="width:100%;" name="PeriodoId" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-4">
+                    <label>Creado por: </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" style="width:100%;" name="CreadoPor" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-4">
+                    <label>Departamento: </label>
+                </div>
+                <div class="col-md-8">
+                    <div>
+                        <div class="selectContainer">
+                            <select style="width:100%;" name="Departamento">
+                                @foreach (var item in Model.Departamentos)
+                                {
+                                    <option value="@Html.DisplayFor(modelItem => item.Nombre)">@Html.DisplayFor(modelItem => item.Nombre)</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-4">
+                    <label>Fecha de Requisicion: </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="date" style="width:100%;" value="@DateTime.Now" name="FechaRequisicion" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-4">
+                    <label>Proveedor: </label>
+                </div>
+                <div class="col-md-8">
+                    <div>
+                        <div class="selectContainer">
+                            <select style="width:100%;" name="Proveedor">
+                                @foreach (var item in Model.Proveedores)
+                                {
+                                    <option value="@Html.DisplayFor(modelItem => item.Nombre)">@Html.DisplayFor(modelItem => item.Nombre)</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-4">
+                    <label>Fecha de Entrega: </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="date" style="width:100%;" value="@DateTime.Now" name="FechaEntrega" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-4">
+                    <label>Moneda: </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" style="width:100%;" name="MonedaId" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-4">
+                    <label>Prioridad: </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" style="width:100%;" name="PrioridadId" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-4">
+                    <label>Estatus: </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" style="width:100%;" name="EstatusId" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-4">
+                    <label>Descripcion:</label>
+                </div>
+                <div class="col-md-8">
+                    @Html.TextArea("Descripcion", htmlAttributes: new { @style = "width:100%; height:80px;" } )
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-4">
+                    <label>Comentarios:</label>
+                </div>
+                <div class="col-md-8">
+                    @Html.TextArea("Comentarios", htmlAttributes: new { @style = "width:100%; height:80px;" })
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4 pull-right">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Confirmar</button>
+            &nbsp;&nbsp;
+            <a href="@Url.Action("All", "Requisition")" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+        </div>
+    </div>
+}

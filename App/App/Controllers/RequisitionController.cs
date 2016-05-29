@@ -49,13 +49,47 @@ namespace App.Controllers
 
         public ActionResult Add()
         {
-            return View();
+            fr.Proveedores = pvr.GetAll();
+            fr.Departamentos = dpr.GetAll();
+
+            return View(fr);
         }
 
         [HttpPost]
         public ActionResult Add(FormCollection form)
         {
-            return RedirectToAction("Details", new { id = 0 });
+            string Depto = form["Departamento"];
+            var Deptos = fr.Departamentos;
+            Deptos = dpr.GetByName(Depto);
+
+            string Prvdr = form["Proveedor"];
+            var Prvdrs = fr.Proveedores;
+            Prvdrs = pvr.GetByName(Prvdr);
+
+            r.Id = Int32.Parse(form["ReqId"]);
+            r.PeriodoId = Int32.Parse(form["PeriodoId"]);
+            r.DepartamentoId = Deptos.FirstOrDefault().Id;
+            r.ProveedorId = Prvdrs.FirstOrDefault().Id;
+            r.MonedaId = Int32.Parse(form["MonedaId"]);
+            r.EstatusId = Int32.Parse(form["EstatusId"]);
+            r.TotalLineas = 0;
+            r.SubTotal = 0;
+            r.Interes = 0;
+            r.GranTotal = 0;
+            r.CreadoPor = Int32.Parse(form["CreadoPor"]);
+            r.Creado = DateTime.Now;
+            r.ActualizadoPor = Int32.Parse(form["CreadoPor"]);
+            r.Actualizado = DateTime.Now;
+            r.Descripcion = form["Descripcion"];
+            r.FechaRequisicion = DateTime.Parse(form["FechaRequisicion"]);
+            r.FechaEntrega = DateTime.Parse(form["FechaEntrega"]);
+            r.Comentarios = form["Comentarios"];
+            r.PrioridadId = form["PrioridadId"];
+            r.Activo = true;
+
+            rr.Add(r);
+
+            return RedirectToAction("Details", new { id = r.Id });
         }
 
         public ActionResult Edit(int id)
@@ -92,7 +126,7 @@ namespace App.Controllers
             r.CreadoPor = Int32.Parse(form["CreadoPor"]);
             r.Creado = DateTime.Parse(form["Creado"]);
             r.ActualizadoPor = Int32.Parse(form["ActualizadoPor"]);
-            r.Actualizado = DateTime.Parse(form["Actualizado"]);
+            r.Actualizado = DateTime.Now;
             r.Descripcion = form["Descripcion"];
             r.FechaRequisicion = DateTime.Parse(form["FechaRequisicion"]);
             r.FechaEntrega = DateTime.Parse(form["FechaEntrega"]);
