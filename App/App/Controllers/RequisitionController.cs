@@ -52,15 +52,57 @@ namespace App.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Add(FormCollection form)
+        {
+            return RedirectToAction("Details", new { id = 0 });
+        }
+
         public ActionResult Edit(int id)
         {
-            return View();
+            fr.Requsiciones = rr.GetById(id);
+            fr.Lineas = rlr.GetByIdRequisicion(id);
+            fr.Proveedores = pvr.GetAll();
+            fr.Departamentos = dpr.GetAll();
+
+            return View(fr);
         }
 
         [HttpPost]
         public ActionResult Edit(FormCollection form)
         {
-            return RedirectToAction("Details", new { });
+            string Depto = form["Departamento"];
+            var Deptos = fr.Departamentos;
+            Deptos = dpr.GetByName(Depto);
+
+            string Prvdr = form["Proveedor"];
+            var Prvdrs = fr.Proveedores;
+            Prvdrs = pvr.GetByName(Prvdr);
+
+            r.Id = Int32.Parse(form["ReqId"]);
+            r.PeriodoId = Int32.Parse(form["PeriodoId"]);
+            r.DepartamentoId = Deptos.FirstOrDefault().Id;
+            r.ProveedorId = Prvdrs.FirstOrDefault().Id;
+            r.MonedaId = Int32.Parse(form["MonedaId"]);
+            r.EstatusId = Int32.Parse(form["EstatusId"]);
+            r.TotalLineas = Int32.Parse(form["TotalLineas"]);
+            r.SubTotal = Decimal.Parse(form["SubTotal"]);
+            r.Interes = 0;
+            r.GranTotal = Decimal.Parse(form["GranTotal"]);
+            r.CreadoPor = Int32.Parse(form["CreadoPor"]);
+            r.Creado = DateTime.Parse(form["Creado"]);
+            r.ActualizadoPor = Int32.Parse(form["ActualizadoPor"]);
+            r.Actualizado = DateTime.Parse(form["Actualizado"]);
+            r.Descripcion = form["Descripcion"];
+            r.FechaRequisicion = DateTime.Parse(form["FechaRequisicion"]);
+            r.FechaEntrega = DateTime.Parse(form["FechaEntrega"]);
+            r.Comentarios = form["Comentarios"];
+            r.PrioridadId = form["PrioridadId"];
+            r.Activo = Convert.ToBoolean(form["Activo"]);
+
+            rr.Update(r);
+
+            return RedirectToAction("Details", new { r.Id });
         }
 
         [HttpPost]

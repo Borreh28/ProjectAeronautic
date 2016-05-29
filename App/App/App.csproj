@@ -203,6 +203,7 @@
     <Content Include="Views\Form\Details.cshtml" />
     <Content Include="Views\Requisition\All.cshtml" />
     <Content Include="Views\Requisition\Details.cshtml" />
+    <Content Include="Views\Requisition\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />

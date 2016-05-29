@@ -1,7 +1,7 @@
 ﻿@model App.ViewModels.FormularioRequisicion
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     int Numero = 0;
@@ -10,16 +10,22 @@
 }
 
 <h1></h1>
-@using (Html.BeginForm("Update", "Form", FormMethod.Post))
+@using (Html.BeginForm("Edit", "Requisition", FormMethod.Post))
 {
-    @Html.Hidden("Moneda", Model.Requsiciones.FirstOrDefault().MonedaId)
+    @Html.Hidden("MonedaId", Model.Requsiciones.FirstOrDefault().MonedaId)
     @Html.Hidden("Descripcion", Model.Requsiciones.FirstOrDefault().Descripcion)
     @Html.Hidden("FechaEntrega", Model.Requsiciones.FirstOrDefault().FechaEntrega)
     @Html.Hidden("Comentarios", Model.Requsiciones.FirstOrDefault().Comentarios)
     @Html.Hidden("PrioridadId", Model.Requsiciones.FirstOrDefault().PrioridadId)
+    @Html.Hidden("Activo", Model.Requsiciones.FirstOrDefault().Activo)
+
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h1 class="panel-title">Requisicion</h1>
+            <div class="row">
+                <div class="col-md-2 pull-left">
+                    <h1 class="panel-title">Requisicion</h1>
+                </div>
+            </div>
         </div>
         <div class="panel-body">
             <div class="row">
@@ -40,7 +46,7 @@
                             </div>
                             <div class="col-md-2">
                                 <p>@Model.Requsiciones.FirstOrDefault().CreadoPor</p>
-                                @Html.Hidden("ReqCreadoPor", Model.Requsiciones.FirstOrDefault().CreadoPor)
+                                @Html.Hidden("CreadoPor", Model.Requsiciones.FirstOrDefault().CreadoPor)
                             </div>
                         </div>
                         <div class="row">
@@ -49,7 +55,7 @@
                             </div>
                             <div class="col-md-2">
                                 <p>@Model.Requsiciones.FirstOrDefault().Creado</p>
-                                @Html.Hidden("ReqFechaCreacion", Model.Requsiciones.FirstOrDefault().Creado)
+                                @Html.Hidden("Creado", Model.Requsiciones.FirstOrDefault().Creado)
                             </div>
                         </div>
                         <div class="row">
@@ -75,7 +81,7 @@
                             </div>
                             <div class="col-md-2">
                                 <p>@Model.Requsiciones.FirstOrDefault().ActualizadoPor</p>
-                                @Html.Hidden("ReqActualizadoPor", Model.Requsiciones.FirstOrDefault().ActualizadoPor)
+                                @Html.Hidden("ActualizadoPor", Model.Requsiciones.FirstOrDefault().ActualizadoPor)
                             </div>
                         </div>
                         <div class="row">
@@ -84,7 +90,7 @@
                             </div>
                             <div class="col-md-2">
                                 <p>@Model.Requsiciones.FirstOrDefault().Actualizado</p>
-                                @Html.Hidden("ReqFechaActualizacion", Model.Requsiciones.FirstOrDefault().Actualizado)
+                                @Html.Hidden("Actualizado", Model.Requsiciones.FirstOrDefault().Actualizado)
                             </div>
                         </div>
                     </div>
@@ -204,13 +210,13 @@
                                     @Html.DisplayFor(modelItem => item.Requisicion.GranTotal)
                                 </td>
                             </tr>
-                            
+
                             SubTotal = SubTotal + item.Requisicion.SubTotal;
                             Total = Total + item.Requisicion.GranTotal;
                         }
                         @Html.Hidden("TotalLineas", Numero)
                         @Html.Hidden("SubTotal", SubTotal)
-                        @Html.Hidden("Total", Total)
+                        @Html.Hidden("GranTotal", Total)
                     </tbody>
                 </table>
             </div>
@@ -300,8 +306,16 @@
             </div>
         </div>
         <div class="panel-footer">
-            <div class="col-md-offset-11">
-                <input type="submit" value="Update" class="btn btn-primary" />
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4 pull-right">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    @*<input type="submit" value="Confirmar" class="btn btn-primary" />*@
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Confirmar</button>
+                    &nbsp;&nbsp;
+                    <a href="@Url.Action("Details", "Requisition", new { id = Model.Requsiciones.FirstOrDefault().Id })" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+                </div>
             </div>
         </div>
     </div>
