@@ -26,3 +26,4 @@ C:\Users\alan\Desktop\AeroRepo\App\App.DAL\obj\Debug\App.DAL.Migrations.Init.res
 C:\Users\alan\Desktop\AeroRepo\App\App.DAL\obj\Debug\App.DAL.csproj.GenerateResource.Cache
 C:\Users\alan\Desktop\AeroRepo\App\App.DAL\obj\Debug\App.DAL.dll
 C:\Users\alan\Desktop\AeroRepo\App\App.DAL\obj\Debug\App.DAL.pdb
+C:\Users\alan\Desktop\AeroRepo\App\App.DAL\obj\Debug\App.DAL.Migrations.DBv10.resources

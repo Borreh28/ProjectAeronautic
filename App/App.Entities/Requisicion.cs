@@ -29,6 +29,7 @@ namespace App.Entities
         public DateTime FechaEntrega { get; set; }
         public string Comentarios { get; set; }
         public string PrioridadId { get; set; }
+        public bool Activo { get; set; }
 
         public virtual ICollection<RequisicionLinea> Lineas { get; set; }
         public virtual Proveedor Proveedor { get; set; }

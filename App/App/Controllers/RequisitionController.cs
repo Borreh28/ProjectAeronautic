@@ -34,7 +34,7 @@ namespace App.Controllers
 
         public ActionResult All()
         {
-            var model = rr.GetAll();
+            var model = rr.GetAllActive();
 
             return View(model);
         }
@@ -66,9 +66,46 @@ namespace App.Controllers
         [HttpPost]
         public ActionResult Delete(FormCollection form)
         {
-            r.Id = Int32.Parse(form["Id"]);
+            var check = form["Permanente"];
+            bool Permanente = false;
 
-            rr.Delete(r.Id);
+            if (check != "false")
+            {
+                check = "true";
+                Permanente = Convert.ToBoolean(check);
+            }
+
+            if (Permanente)
+            {
+                r.Id = Int32.Parse(form["Id"]);
+
+                rr.Delete(r.Id);
+            }
+            else
+            {
+                r.Id = Int32.Parse(form["Id"]);
+                r.PeriodoId = Int32.Parse(form["PeriodoId"]);
+                r.DepartamentoId = Int32.Parse(form["DepartamentoId"]);
+                r.ProveedorId = Int32.Parse(form["ProveedorId"]);
+                r.MonedaId = Int32.Parse(form["MonedaId"]);
+                r.EstatusId = Int32.Parse(form["EstatusId"]);
+                r.TotalLineas = Int32.Parse(form["TotalLineas"]);
+                r.SubTotal = Decimal.Parse(form["SubTotal"]);
+                r.Interes = Decimal.Parse(form["Interes"]);
+                r.GranTotal = Decimal.Parse(form["GranTotal"]);
+                r.CreadoPor = Int32.Parse(form["CreadoPor"]);
+                r.Creado = DateTime.Parse(form["Creado"]);
+                r.ActualizadoPor = Int32.Parse(form["ActualizadoPor"]);
+                r.Actualizado = DateTime.Parse(form["Actualizado"]);
+                r.Descripcion = form["Descripcion"];
+                r.FechaRequisicion = DateTime.Parse(form["FechaRequisicion"]);
+                r.FechaEntrega = DateTime.Parse(form["FechaEntrega"]);
+                r.Comentarios = form["Comentarios"];
+                r.PrioridadId = form["PrioridadId"];
+                r.Activo = false;
+
+                rr.Update(r);
+            }
 
             return RedirectToAction("All");
         }

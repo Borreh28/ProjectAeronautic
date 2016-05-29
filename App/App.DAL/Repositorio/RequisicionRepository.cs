@@ -22,6 +22,11 @@ namespace App.DAL
             return db.Requisiciones.ToList();
         }
 
+        public IEnumerable<Requisicion> GetAllActive()
+        {
+            return db.Requisiciones.Where(w => w.Activo == true).ToList();
+        }
+
         public IEnumerable<Requisicion> GetById(int id)
         {
             return db.Requisiciones.Where(w => w.Id == id).ToList();

@@ -30,6 +30,7 @@ namespace App.DAL.Mapeo
             modelBuilder.Entity<Requisicion>().Property(r => r.FechaEntrega).HasColumnName("FechaEntrega").IsRequired();
             modelBuilder.Entity<Requisicion>().Property(r => r.Comentarios).HasColumnName("Comentarios").HasMaxLength(500).IsRequired();
             modelBuilder.Entity<Requisicion>().Property(r => r.PrioridadId).HasColumnName("C_Prioridad_ID").IsRequired();
+            modelBuilder.Entity<Requisicion>().Property(r => r.Activo).HasColumnName("Activo").IsRequired();
 
             modelBuilder.Entity<Requisicion>()
                 .HasRequired(r => r.Proveedor)
