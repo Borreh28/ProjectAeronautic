@@ -7,6 +7,8 @@
     int Numero = 0;
     decimal SubTotal = 0;
     decimal Total = 0;
+    decimal GranSubTotal = 0;
+    decimal GranTotal = 0;
 }
 
 <h1></h1>
@@ -54,7 +56,7 @@
                                 <label>Fecha de Creacion: </label>
                             </div>
                             <div class="col-md-2">
-                                <p>@Model.Requsiciones.FirstOrDefault().Creado</p>
+                                <p>@Model.Requsiciones.FirstOrDefault().Creado.ToShortDateString()</p>
                                 @Html.Hidden("Creado", Model.Requsiciones.FirstOrDefault().Creado)
                             </div>
                         </div>
@@ -95,7 +97,7 @@
                                 <label>Fecha de Actualizacion: </label>
                             </div>
                             <div class="col-md-2">
-                                <p>@Model.Requsiciones.FirstOrDefault().Actualizado</p>
+                                <p>@Model.Requsiciones.FirstOrDefault().Actualizado.ToShortDateString()</p>
                                 @Html.Hidden("Actualizado", Model.Requsiciones.FirstOrDefault().Actualizado)
                             </div>
                         </div>
@@ -142,7 +144,7 @@
                                 <label>Fecha de Requisicion: </label>
                             </div>
                             <div class="col-md-2">
-                                <p>@Model.Requsiciones.FirstOrDefault().FechaRequisicion</p>
+                                <p>@Model.Requsiciones.FirstOrDefault().FechaRequisicion.ToShortDateString()</p>
                                 @Html.Hidden("FechaRequisicion", Model.Requsiciones.FirstOrDefault().FechaRequisicion)
                             </div>
                         </div>
@@ -175,7 +177,7 @@
                                 #
                             </th>
                             <th>
-                                No. Parte
+                                No. Linea
                             </th>
                             <th>
                                 Cantidad
@@ -192,12 +194,16 @@
                             <th>
                                 Total
                             </th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model.Lineas)
                         {
                             Numero++;
+                            SubTotal = item.Cantidad * item.PrecioVenta;
+                            Total = SubTotal + (SubTotal * item.Requisicion.Interes);
 
                             <tr>
                                 <td>
@@ -207,28 +213,34 @@
                                     @Html.DisplayFor(modelItem => item.Id)
                                 </td>
                                 <td>
-                                    @Html.TextBox("Cantidad" + Numero.ToString())
+                                    @Html.DisplayFor(modelItem => item.Cantidad)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.PrecioVenta)
+                                    $ @Html.DisplayFor(modelItem => item.PrecioVenta)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Requisicion.Interes)
+                                    @Html.DisplayFor(modelItem => item.Requisicion.Interes)%
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Requisicion.SubTotal)
+                                    $ @Math.Round(SubTotal, 2)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Requisicion.GranTotal)
+                                    $ @Math.Round(Total, 2)
+                                </td>
+                                <td>
+                                    <a href="#EditLine"><span class="glyphicon glyphicon-pencil"></span></a>
+                                </td>
+                                <td>
+                                    <a href="#DeleteLine"><span class="glyphicon glyphicon-trash"></span></a>
                                 </td>
                             </tr>
 
-                            SubTotal = SubTotal + item.Requisicion.SubTotal;
-                            Total = Total + item.Requisicion.GranTotal;
+                            GranSubTotal = GranSubTotal + SubTotal;
+                            GranTotal = GranTotal + Total;
                         }
                         @Html.Hidden("TotalLineas", Numero)
-                        @Html.Hidden("SubTotal", SubTotal)
-                        @Html.Hidden("GranTotal", Total)
+                        @Html.Hidden("SubTotal", GranSubTotal)
+                        @Html.Hidden("GranTotal", GranTotal)
                     </tbody>
                 </table>
             </div>

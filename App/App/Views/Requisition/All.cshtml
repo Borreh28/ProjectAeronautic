@@ -26,10 +26,10 @@
             Estatus
         </th>
         <th>
-            Total de Lineas
+            Lineas
         </th>
         <th>
-            Gran Total
+            Total
         </th>
         <th>
             Fecha Requisicion
@@ -56,19 +56,19 @@
             @Html.DisplayFor(modelItem => item.Proveedor.Nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EstatusId)
+            @Html.DisplayFor(modelItem => item.Estatus.Nombre)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TotalLineas)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.GranTotal)
+            $ @Html.DisplayFor(modelItem => item.GranTotal)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FechaRequisicion)
+            @item.FechaRequisicion.ToShortDateString()
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FechaEntrega)
+            @item.FechaEntrega.ToShortDateString()
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PrioridadId)

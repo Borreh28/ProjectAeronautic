@@ -58,7 +58,7 @@
                     <label>Fecha de Requisicion: </label>
                 </div>
                 <div class="col-md-8">
-                    <input type="date" style="width:100%;" value="@DateTime.Now" name="FechaRequisicion" />
+                    <input type="date" style="width:100%;" value="@DateTime.Now.ToShortDateString()" name="FechaRequisicion" />
                 </div>
             </div>
             <div class="col-md-6">
@@ -83,7 +83,7 @@
                     <label>Fecha de Entrega: </label>
                 </div>
                 <div class="col-md-8">
-                    <input type="date" style="width:100%;" value="@DateTime.Now" name="FechaEntrega" />
+                    <input type="date" style="width:100%;" value="@DateTime.Now.ToShortDateString()" name="FechaEntrega" />
                 </div>
             </div>
             <div class="col-md-6">
