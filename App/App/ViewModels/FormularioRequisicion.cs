@@ -9,5 +9,8 @@ namespace App.ViewModels
         public virtual IEnumerable<RequisicionLinea> Lineas { get; set; }
         public virtual IEnumerable<Proveedor> Proveedores { get; set; }
         public virtual IEnumerable<Departamento> Departamentos { get; set; }
+        public virtual IEnumerable<Estatus> Estatus { get; set; }
+        public virtual IEnumerable<Periodo> Periodos { get; set; }
+        public virtual IEnumerable<Prioridad> Prioridades { get; set; }
     }
 }

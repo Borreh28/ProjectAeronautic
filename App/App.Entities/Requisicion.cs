@@ -34,5 +34,8 @@ namespace App.Entities
         public virtual ICollection<RequisicionLinea> Lineas { get; set; }
         public virtual Proveedor Proveedor { get; set; }
         public virtual Departamento Departamento { get; set; }
+        public virtual Periodo Periodo { get; set; }
+        public virtual Estatus Estatus { get; set; }
+        public virtual Prioridad Prioridad { get; set; }
     }
 }

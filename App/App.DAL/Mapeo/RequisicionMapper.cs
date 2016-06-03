@@ -41,6 +41,21 @@ namespace App.DAL.Mapeo
                 .HasRequired(r => r.Departamento)
                 .WithMany(d => d.Requisiciones)
                 .HasForeignKey(fk => fk.DepartamentoId);
+
+            modelBuilder.Entity<Requisicion>()
+                .HasRequired(r => r.Periodo)
+                .WithMany(p => p.Requisiciones)
+                .HasForeignKey(fk => fk.PeriodoId);
+
+            modelBuilder.Entity<Requisicion>()
+                .HasRequired(r => r.Estatus)
+                .WithMany(e => e.Requisiciones)
+                .HasForeignKey(fk => fk.EstatusId);
+
+            modelBuilder.Entity<Requisicion>()
+                .HasRequired(r => r.Prioridad)
+                .WithMany(p => p.Requisiciones)
+                .HasForeignKey(fk => fk.PrioridadId);
         }
     }
 }

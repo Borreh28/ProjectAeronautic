@@ -14,13 +14,6 @@
             <div class="col-md-2 pull-left">
                 <h1 class="panel-title">Requisicion</h1>
             </div>
-            @*<div class="col-md-7"></div>
-            <div class="col-md-3 pull-right">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="@Url.Action("Edit","Requisition", new { id = Model.Requsiciones.FirstOrDefault().Id })" class="panel-title"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
-                &nbsp;&nbsp;
-                <a href="#Delete" class="btn btn-primary" data-toggle="modal" data-target="#ConfirmDeleteModal"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>
-            </div>*@
         </div>
     </div>
     <div class="panel-body">
@@ -111,7 +104,7 @@
                             <label>Estatus: </label>
                         </div>
                         <div class="col-md-2">
-                            <p>@Model.Requsiciones.FirstOrDefault().EstatusId</p>
+                            <p>@Model.Requsiciones.FirstOrDefault().Estatus.Nombre</p>
                         </div>
                     </div>
                     <div class="row">
@@ -119,7 +112,7 @@
                             <label>Periodo: </label>
                         </div>
                         <div class="col-md-2">
-                            <p>@Model.Requsiciones.FirstOrDefault().PeriodoId</p>
+                            <p>@Model.Requsiciones.FirstOrDefault().Periodo.Nombre</p>
                         </div>
                     </div>
                 </div>

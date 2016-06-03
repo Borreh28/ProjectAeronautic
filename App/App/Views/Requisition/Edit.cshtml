@@ -66,8 +66,14 @@
                                 <div class="form-group">
                                     <div class="selectContainer">
                                         <select style="width:100%;" name="Departamento">
+                                            <option value="@Model.Requsiciones.FirstOrDefault().Departamento.Nombre">@Model.Requsiciones.FirstOrDefault().Departamento.Nombre</option>
                                             @foreach (var item in Model.Departamentos)
                                             {
+                                                if(item.Nombre == @Model.Requsiciones.FirstOrDefault().Departamento.Nombre)
+                                                {
+                                                    continue;
+                                                }
+
                                                 <option value="@Html.DisplayFor(modelItem => item.Nombre)">@Html.DisplayFor(modelItem => item.Nombre)</option>
                                             }
                                         </select>
@@ -116,8 +122,14 @@
                                 <div class="form-group">
                                     <div class="selectContainer">
                                         <select style="width:100%;" name="Proveedor">
+                                            <option value="@Model.Requsiciones.FirstOrDefault().Proveedor.Nombre">@Model.Requsiciones.FirstOrDefault().Proveedor.Nombre</option>
                                             @foreach (var item in Model.Proveedores)
                                             {
+                                                if (item.Nombre == @Model.Requsiciones.FirstOrDefault().Proveedor.Nombre)
+                                                {
+                                                    continue;
+                                                }
+
                                                 <option value="@Html.DisplayFor(modelItem => item.Nombre)">@Html.DisplayFor(modelItem => item.Nombre)</option>
                                             }
                                         </select>
@@ -139,7 +151,7 @@
                                 <label>Estatus: </label>
                             </div>
                             <div class="col-md-2">
-                                <p>@Model.Requsiciones.FirstOrDefault().EstatusId</p>
+                                <p>@Model.Requsiciones.FirstOrDefault().Estatus.Nombre</p>
                                 @Html.Hidden("EstatusId", Model.Requsiciones.FirstOrDefault().EstatusId)
                             </div>
                         </div>
@@ -148,7 +160,7 @@
                                 <label>Periodo: </label>
                             </div>
                             <div class="col-md-2">
-                                <p>@Model.Requsiciones.FirstOrDefault().PeriodoId</p>
+                                <p>@Model.Requsiciones.FirstOrDefault().Periodo.Nombre</p>
                                 @Html.Hidden("PeriodoId", Model.Requsiciones.FirstOrDefault().PeriodoId)
                             </div>
                         </div>
@@ -156,7 +168,7 @@
                 </div>
             </div>
             <div class="row">
-                <table style="margin-top: 30px; margin-bottom: 50px;" class="table table-striped">
+                <table style="margin-top: 30px; margin-bottom: 20px;" class="table table-striped">
                     <thead>
                         <tr>
                             <th>
@@ -219,6 +231,11 @@
                         @Html.Hidden("GranTotal", Total)
                     </tbody>
                 </table>
+            </div>
+            <div style="margin-bottom: 50px;" class="row">
+                <div class="col-md-6 pull-left">
+                    <a href="#AddLine" class="btn-sm btn-primary" data-toggle="modal" data-target="#AddLineModal"><span class="glyphicon glyphicon-plus-sign"></span> Agregar nueva linea</a>
+                </div>
             </div>
             <div class="row">
                 <div class="container">
@@ -319,3 +336,81 @@
         </div>
     </div>
 }
+
+<div id="AddLineModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" style="transform:translate(0px,50px);">
+            @using (Html.BeginForm("Add", "RequisitionLine", FormMethod.Post))
+            {
+                @Html.Hidden("ReqId", Model.Requsiciones.FirstOrDefault().Id)
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dissmiss="modal">&times;</button>
+                    <h3 class="modal-title">Nueva Linea</h3>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger">Todos los campos son obligatorios*</p>
+                    <br />
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>No. Linea:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" style="width:100%;" value="" name="LineaId" />
+                        </div>
+                    </div>
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>Linea:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" style="width:100%;" value="" name="Linea" />
+                        </div>
+                    </div>
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>No. Parte:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" style="width:100%;" value="" name="ParteId" />
+                        </div>
+                    </div>
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>Cantidad:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" style="width:100%;" value="" name="Cantidad" />
+                        </div>
+                    </div>
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>Precio de Venta:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" style="width:100%;" value="" name="Precio" />
+                        </div>
+                    </div>
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>Descripcion:</label>
+                        </div>
+                        <div class="col-md-7">
+                            @Html.TextArea("Descripcion", htmlAttributes: new { @class = "input-text-lg" })
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Confirmar</button>
+                    <a href="@Url.Action("Edit", "Requisition", new { id = Model.Requsiciones.FirstOrDefault().Id })" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

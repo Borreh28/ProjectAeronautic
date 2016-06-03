@@ -11,132 +11,144 @@ namespace App.Controllers
 {
     public class RequisitionController : Controller
     {
-        Requisicion r;
-        RequisicionLinea rl;
-        FormularioRequisicion fr;
+        Requisicion Req;
+        RequisicionLinea ReqLin;
+        FormularioRequisicion FormReq;
 
-        RequisicionRepository rr;
-        RequisicionLineaRepository rlr;
-        ProveedorRepository pvr;
-        DepartamentoRepository dpr;
+        RequisicionRepository ReqRepo;
+        RequisicionLineaRepository ReqLinRepo;
+        ProveedorRepository ProvRepo;
+        DepartamentoRepository DeptoRepo;
+        EstatusRepository EstRepo;
+        PeriodoRepository PerRepo;
+        PrioridadRepository PrioRepo;
 
         public RequisitionController()
         {
-            r = new Requisicion();
-            rl = new RequisicionLinea();
-            fr = new FormularioRequisicion();
+            Req = new Requisicion();
+            ReqLin = new RequisicionLinea();
+            FormReq = new FormularioRequisicion();
 
-            rr = new RequisicionRepository();
-            rlr = new RequisicionLineaRepository();
-            pvr = new ProveedorRepository();
-            dpr = new DepartamentoRepository();
+            ReqRepo = new RequisicionRepository();
+            ReqLinRepo = new RequisicionLineaRepository();
+            ProvRepo = new ProveedorRepository();
+            DeptoRepo = new DepartamentoRepository();
+            EstRepo = new EstatusRepository();
+            PerRepo = new PeriodoRepository();
+            PrioRepo = new PrioridadRepository();
         }
 
         public ActionResult All()
         {
-            var model = rr.GetAllActive();
+            var model = ReqRepo.GetAllActive();
 
             return View(model);
         }
 
         public ActionResult Details(int id)
         {
-            fr.Requsiciones = rr.GetById(id);
-            fr.Lineas = rlr.GetByIdRequisicion(id);
+            FormReq.Requsiciones = ReqRepo.GetById(id);
+            FormReq.Lineas = ReqLinRepo.GetByIdRequisicion(id);
 
-            return View(fr);
+            return View(FormReq);
         }
 
         public ActionResult Add()
         {
-            fr.Proveedores = pvr.GetAll();
-            fr.Departamentos = dpr.GetAll();
+            FormReq.Proveedores = ProvRepo.GetAll();
+            FormReq.Departamentos = DeptoRepo.GetAll();
+            FormReq.Estatus = EstRepo.GetAll();
+            FormReq.Periodos = PerRepo.GetAll();
+            FormReq.Prioridades = PrioRepo.GetAll();
 
-            return View(fr);
+            return View(FormReq);
         }
 
         [HttpPost]
         public ActionResult Add(FormCollection form)
         {
-            string Depto = form["Departamento"];
-            var Deptos = fr.Departamentos;
-            Deptos = dpr.GetByName(Depto);
+            string Departamento = form["Departamento"];
+            var Departamentos = FormReq.Departamentos;
+            Departamentos = DeptoRepo.GetByName(Departamento);
 
-            string Prvdr = form["Proveedor"];
-            var Prvdrs = fr.Proveedores;
-            Prvdrs = pvr.GetByName(Prvdr);
+            string Proveedor = form["Proveedor"];
+            var Proveedores = FormReq.Proveedores;
+            Proveedores = ProvRepo.GetByName(Proveedor);
 
-            r.Id = Int32.Parse(form["ReqId"]);
-            r.PeriodoId = Int32.Parse(form["PeriodoId"]);
-            r.DepartamentoId = Deptos.FirstOrDefault().Id;
-            r.ProveedorId = Prvdrs.FirstOrDefault().Id;
-            r.MonedaId = Int32.Parse(form["MonedaId"]);
-            r.EstatusId = Int32.Parse(form["EstatusId"]);
-            r.TotalLineas = 0;
-            r.SubTotal = 0;
-            r.Interes = 0;
-            r.GranTotal = 0;
-            r.CreadoPor = Int32.Parse(form["CreadoPor"]);
-            r.Creado = DateTime.Now;
-            r.ActualizadoPor = Int32.Parse(form["CreadoPor"]);
-            r.Actualizado = DateTime.Now;
-            r.Descripcion = form["Descripcion"];
-            r.FechaRequisicion = DateTime.Parse(form["FechaRequisicion"]);
-            r.FechaEntrega = DateTime.Parse(form["FechaEntrega"]);
-            r.Comentarios = form["Comentarios"];
-            r.PrioridadId = form["PrioridadId"];
-            r.Activo = true;
+            string Periodo = form["Periodo"];
+            var Periodos = FormReq.Periodos;
+            Periodos = PerRepo.GetByName(Periodo);
+            
+            Req.PeriodoId = Periodos.FirstOrDefault().Id;
+            Req.DepartamentoId = Departamentos.FirstOrDefault().Id;
+            Req.ProveedorId = Proveedores.FirstOrDefault().Id;
+            Req.MonedaId = 0;
+            Req.EstatusId = 1;
+            Req.TotalLineas = 0;
+            Req.SubTotal = 0;
+            Req.Interes = 0;
+            Req.GranTotal = 0;
+            Req.CreadoPor = 0;
+            Req.Creado = DateTime.Now;
+            Req.ActualizadoPor = 0;
+            Req.Actualizado = DateTime.Now;
+            Req.Descripcion = form["Descripcion"];
+            Req.FechaRequisicion = DateTime.Parse(form["FechaRequisicion"]);
+            Req.FechaEntrega = DateTime.Parse(form["FechaEntrega"]);
+            Req.Comentarios = form["Comentarios"];
+            Req.PrioridadId = form["Prioridad"];
+            Req.Activo = true;
 
-            rr.Add(r);
+            ReqRepo.Add(Req);
 
-            return RedirectToAction("Details", new { id = r.Id });
+            return RedirectToAction("Edit", new { id = Req.Id });
         }
 
         public ActionResult Edit(int id)
         {
-            fr.Requsiciones = rr.GetById(id);
-            fr.Lineas = rlr.GetByIdRequisicion(id);
-            fr.Proveedores = pvr.GetAll();
-            fr.Departamentos = dpr.GetAll();
+            FormReq.Requsiciones = ReqRepo.GetById(id);
+            FormReq.Lineas = ReqLinRepo.GetByIdRequisicion(id);
+            FormReq.Proveedores = ProvRepo.GetAll();
+            FormReq.Departamentos = DeptoRepo.GetAll();
 
-            return View(fr);
+            return View(FormReq);
         }
 
         [HttpPost]
         public ActionResult Edit(FormCollection form)
         {
             string Depto = form["Departamento"];
-            var Deptos = fr.Departamentos;
-            Deptos = dpr.GetByName(Depto);
+            var Deptos = FormReq.Departamentos;
+            Deptos = DeptoRepo.GetByName(Depto);
 
             string Prvdr = form["Proveedor"];
-            var Prvdrs = fr.Proveedores;
-            Prvdrs = pvr.GetByName(Prvdr);
+            var Prvdrs = FormReq.Proveedores;
+            Prvdrs = ProvRepo.GetByName(Prvdr);
 
-            r.Id = Int32.Parse(form["ReqId"]);
-            r.PeriodoId = Int32.Parse(form["PeriodoId"]);
-            r.DepartamentoId = Deptos.FirstOrDefault().Id;
-            r.ProveedorId = Prvdrs.FirstOrDefault().Id;
-            r.MonedaId = Int32.Parse(form["MonedaId"]);
-            r.EstatusId = Int32.Parse(form["EstatusId"]);
-            r.TotalLineas = Int32.Parse(form["TotalLineas"]);
-            r.SubTotal = Decimal.Parse(form["SubTotal"]);
-            r.Interes = 0;
-            r.GranTotal = Decimal.Parse(form["GranTotal"]);
-            r.CreadoPor = Int32.Parse(form["CreadoPor"]);
-            r.Creado = DateTime.Parse(form["Creado"]);
-            r.ActualizadoPor = Int32.Parse(form["ActualizadoPor"]);
-            r.Actualizado = DateTime.Now;
-            r.Descripcion = form["Descripcion"];
-            r.FechaRequisicion = DateTime.Parse(form["FechaRequisicion"]);
-            r.FechaEntrega = DateTime.Parse(form["FechaEntrega"]);
-            r.Comentarios = form["Comentarios"];
-            r.PrioridadId = form["PrioridadId"];
-            r.Activo = Convert.ToBoolean(form["Activo"]);
+            Req.Id = Int32.Parse(form["ReqId"]);
+            Req.PeriodoId = Int32.Parse(form["PeriodoId"]);
+            Req.DepartamentoId = Deptos.FirstOrDefault().Id;
+            Req.ProveedorId = Prvdrs.FirstOrDefault().Id;
+            Req.MonedaId = Int32.Parse(form["MonedaId"]);
+            Req.EstatusId = Int32.Parse(form["EstatusId"]);
+            Req.TotalLineas = Int32.Parse(form["TotalLineas"]);
+            Req.SubTotal = Decimal.Parse(form["SubTotal"]);
+            Req.Interes = 0;
+            Req.GranTotal = Decimal.Parse(form["GranTotal"]);
+            Req.CreadoPor = Int32.Parse(form["CreadoPor"]);
+            Req.Creado = DateTime.Parse(form["Creado"]);
+            Req.ActualizadoPor = Int32.Parse(form["ActualizadoPor"]);
+            Req.Actualizado = DateTime.Now;
+            Req.Descripcion = form["Descripcion"];
+            Req.FechaRequisicion = DateTime.Parse(form["FechaRequisicion"]);
+            Req.FechaEntrega = DateTime.Parse(form["FechaEntrega"]);
+            Req.Comentarios = form["Comentarios"];
+            Req.PrioridadId = form["PrioridadId"];
+            Req.Activo = Convert.ToBoolean(form["Activo"]);
 
-            rr.Update(r);
+            ReqRepo.Update(Req);
 
-            return RedirectToAction("Details", new { r.Id });
+            return RedirectToAction("Details", new { Req.Id });
         }
 
         [HttpPost]
@@ -153,34 +165,34 @@ namespace App.Controllers
 
             if (Permanente)
             {
-                r.Id = Int32.Parse(form["Id"]);
+                Req.Id = Int32.Parse(form["Id"]);
 
-                rr.Delete(r.Id);
+                ReqRepo.Delete(Req.Id);
             }
             else
             {
-                r.Id = Int32.Parse(form["Id"]);
-                r.PeriodoId = Int32.Parse(form["PeriodoId"]);
-                r.DepartamentoId = Int32.Parse(form["DepartamentoId"]);
-                r.ProveedorId = Int32.Parse(form["ProveedorId"]);
-                r.MonedaId = Int32.Parse(form["MonedaId"]);
-                r.EstatusId = Int32.Parse(form["EstatusId"]);
-                r.TotalLineas = Int32.Parse(form["TotalLineas"]);
-                r.SubTotal = Decimal.Parse(form["SubTotal"]);
-                r.Interes = Decimal.Parse(form["Interes"]);
-                r.GranTotal = Decimal.Parse(form["GranTotal"]);
-                r.CreadoPor = Int32.Parse(form["CreadoPor"]);
-                r.Creado = DateTime.Parse(form["Creado"]);
-                r.ActualizadoPor = Int32.Parse(form["ActualizadoPor"]);
-                r.Actualizado = DateTime.Parse(form["Actualizado"]);
-                r.Descripcion = form["Descripcion"];
-                r.FechaRequisicion = DateTime.Parse(form["FechaRequisicion"]);
-                r.FechaEntrega = DateTime.Parse(form["FechaEntrega"]);
-                r.Comentarios = form["Comentarios"];
-                r.PrioridadId = form["PrioridadId"];
-                r.Activo = false;
+                Req.Id = Int32.Parse(form["Id"]);
+                Req.PeriodoId = Int32.Parse(form["PeriodoId"]);
+                Req.DepartamentoId = Int32.Parse(form["DepartamentoId"]);
+                Req.ProveedorId = Int32.Parse(form["ProveedorId"]);
+                Req.MonedaId = Int32.Parse(form["MonedaId"]);
+                Req.EstatusId = Int32.Parse(form["EstatusId"]);
+                Req.TotalLineas = Int32.Parse(form["TotalLineas"]);
+                Req.SubTotal = Decimal.Parse(form["SubTotal"]);
+                Req.Interes = Decimal.Parse(form["Interes"]);
+                Req.GranTotal = Decimal.Parse(form["GranTotal"]);
+                Req.CreadoPor = Int32.Parse(form["CreadoPor"]);
+                Req.Creado = DateTime.Parse(form["Creado"]);
+                Req.ActualizadoPor = Int32.Parse(form["ActualizadoPor"]);
+                Req.Actualizado = DateTime.Parse(form["Actualizado"]);
+                Req.Descripcion = form["Descripcion"];
+                Req.FechaRequisicion = DateTime.Parse(form["FechaRequisicion"]);
+                Req.FechaEntrega = DateTime.Parse(form["FechaEntrega"]);
+                Req.Comentarios = form["Comentarios"];
+                Req.PrioridadId = form["PrioridadId"];
+                Req.Activo = false;
 
-                rr.Update(r);
+                ReqRepo.Update(Req);
             }
 
             return RedirectToAction("All");

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
+﻿using App.DAL.Mapeo;
 using App.Entities;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using App.DAL.Mapeo;
 
 namespace App.DAL
 {
@@ -16,6 +11,9 @@ namespace App.DAL
         public DbSet<RequisicionLinea> Lineas { get; set; }
         public DbSet<Proveedor> Proveedores { get; set; }
         public DbSet<Departamento> Departamentos { get; set; }
+        public DbSet<Periodo> Periodos { get; set; }
+        public DbSet<Estatus> Estatus { get; set; }
+        public DbSet<Prioridad> Prioridad { get; set; }
 
         public Contexto() : base("DefaultConnection")
         {
@@ -30,6 +28,9 @@ namespace App.DAL
             new RequisicionLineaMapper(modelBuilder);
             new ProveedorMapper(modelBuilder);
             new DepartamentoMapper(modelBuilder);
+            new PeriodoMapper(modelBuilder);
+            new EstatusMapper(modelBuilder);
+            new PrioridadMapper(modelBuilder);
         }
     }
 }
