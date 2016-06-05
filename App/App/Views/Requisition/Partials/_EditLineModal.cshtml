@@ -3,11 +3,11 @@
 <div id="EditLineModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content" style="transform:translate(0px,50px);">
-            @using (Html.BeginForm("Add", "RequisitionLine", FormMethod.Post))
+            @using (Html.BeginForm("Edit", "RequisitionLine", FormMethod.Post))
             {
-                <input type="hidden" value="" id="reqId" name="ReqId" readonly />
-                <input type="hidden" value="" id="creadoPor" name="CreadoPor" readonly />
-                <input type="hidden" value="" id="creado" name="Creado" readonly />
+                <input type="hidden" value="" class="reqId" name="ReqId" readonly />
+                <input type="hidden" value="" class="creadoPor" name="CreadoPor" readonly />
+                <input type="hidden" value="" class="creado" name="Creado" readonly />
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dissmiss="modal">&times;</button>
@@ -22,7 +22,7 @@
                             <label>No. Linea:</label>
                         </div>
                         <div class="col-md-7">
-                            <input type="text" style="width:100%;" value="" id="lineaId" name="LineaId" readonly/>
+                            <input type="text" style="width:100%;" value="" class="lineaId" name="LineaId" readonly/>
                         </div>
                     </div>
                     <div class="row margin-height">
@@ -31,7 +31,7 @@
                             <label>Linea:</label>
                         </div>
                         <div class="col-md-7">
-                            <input type="text" style="width:100%;" value="" id="linea" name="Linea" />
+                            <input type="text" style="width:100%;" value="" class="linea" name="Linea" />
                         </div>
                     </div>
                     <div class="row margin-height">
@@ -40,7 +40,7 @@
                             <label>No. Parte:</label>
                         </div>
                         <div class="col-md-7">
-                            <input type="text" style="width:100%;" value="" id="parteId" name="ParteId" />
+                            <input type="text" style="width:100%;" value="" class="parteId" name="ParteId" />
                         </div>
                     </div>
                     <div class="row margin-height">
@@ -49,7 +49,7 @@
                             <label>Cantidad:</label>
                         </div>
                         <div class="col-md-7">
-                            <input type="text" style="width:100%;" value="" id="cantidad" name="Cantidad" />
+                            <input type="text" style="width:100%;" value="" class="cantidad" name="Cantidad" />
                         </div>
                     </div>
                     <div class="row margin-height">
@@ -58,7 +58,7 @@
                             <label>Precio de Venta:</label>
                         </div>
                         <div class="col-md-7">
-                            <input type="text" style="width:100%;" value="" id="precioVenta" name="Precio" />
+                            <input type="text" style="width:100%;" value="" class="precioVenta" name="Precio" />
                         </div>
                     </div>
                     <div class="row margin-height">
@@ -67,7 +67,7 @@
                             <label>Descripcion:</label>
                         </div>
                         <div class="col-md-7">
-                            @Html.TextArea("Descripcion", htmlAttributes: new { @class = "input-text-lg", @id = "descripcion" })
+                            @Html.TextArea("Descripcion", htmlAttributes: new { @class = "input-text-lg descripcion" })
                         </div>
                     </div>
                 </div>

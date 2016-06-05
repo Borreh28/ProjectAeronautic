@@ -5,8 +5,8 @@
         <div class="modal-content" style="transform:translate(0px,50px);">
             @using (Html.BeginForm("Delete", "RequisitionLine", FormMethod.Post))
             {
-                <input type="hidden" value="" id="lineaId" name="LineaId" readonly />
-                <input type="hidden" value="" id="reqId" name="ReqId" readonly />
+                <input type="hidden" value="" class="lineaId" name="LineaId" readonly />
+                <input type="hidden" value="" class="reqId" name="ReqId" readonly />
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dissmiss="modal">&times;</button>

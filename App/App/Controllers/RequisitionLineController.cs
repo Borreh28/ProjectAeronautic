@@ -59,6 +59,26 @@ namespace App.Controllers
         }
 
         [HttpPost]
+        public ActionResult Edit(FormCollection form)
+        {
+            ReqLin.Id = form["LineaId"];
+            ReqLin.RequisicionId = Convert.ToInt32(form["ReqId"]);
+            ReqLin.Linea = Convert.ToInt32(form["Linea"]);
+            ReqLin.ParteId = Convert.ToInt32(form["ParteId"]);
+            ReqLin.Cantidad = Convert.ToInt32(form["Cantidad"]);
+            ReqLin.PrecioVenta = Convert.ToDecimal(form["Precio"]);
+            ReqLin.Descripcion = form["Descripcion"];
+            ReqLin.CreadoPor = Convert.ToInt32(form["CreadoPor"]);
+            ReqLin.Creado = Convert.ToDateTime(form["Creado"]);
+            ReqLin.ActualizadoPor = 0;
+            ReqLin.Actualizado = DateTime.Now;
+
+            ReqLinRepo.Update(ReqLin);
+
+            return RedirectToAction("Edit", "Requisition", new { id = ReqLin.RequisicionId });
+        }
+
+        [HttpPost]
         public ActionResult Delete(FormCollection form)
         {
             string LineaId = form["LineaId"];
