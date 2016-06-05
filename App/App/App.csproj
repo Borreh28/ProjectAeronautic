@@ -206,6 +206,10 @@
     <Content Include="Views\Requisition\Details.cshtml" />
     <Content Include="Views\Requisition\Edit.cshtml" />
     <Content Include="Views\Requisition\Add.cshtml" />
+    <Content Include="Views\Requisition\Partials\_AddLineModal.cshtml" />
+    <Content Include="Views\Requisition\Partials\_DeleteReqModal.cshtml" />
+    <Content Include="Views\Requisition\Partials\_DeleteLineModal.cshtml" />
+    <Content Include="Views\Requisition\Partials\_EditLineModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />

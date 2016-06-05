@@ -57,5 +57,16 @@ namespace App.Controllers
 
             return RedirectToAction("Edit", "Requisition", new { id = ReqLin.RequisicionId });
         }
+
+        [HttpPost]
+        public ActionResult Delete(FormCollection form)
+        {
+            string LineaId = form["LineaId"];
+            int ReqId = Convert.ToInt32(form["ReqId"]);
+
+            ReqLinRepo.Delete(LineaId);
+
+            return RedirectToAction("Edit", "Requisition", new { id = ReqId });
+        }
     }
 }

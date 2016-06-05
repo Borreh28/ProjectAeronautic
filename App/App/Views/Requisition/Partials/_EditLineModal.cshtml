@@ -1,0 +1,81 @@
+﻿@model App.ViewModels.FormularioRequisicion
+
+<div id="EditLineModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" style="transform:translate(0px,50px);">
+            @using (Html.BeginForm("Add", "RequisitionLine", FormMethod.Post))
+            {
+                <input type="hidden" value="" id="reqId" name="ReqId" readonly />
+                <input type="hidden" value="" id="creadoPor" name="CreadoPor" readonly />
+                <input type="hidden" value="" id="creado" name="Creado" readonly />
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dissmiss="modal">&times;</button>
+                    <h3 class="modal-title">Editar Linea</h3>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger">Todos los campos son obligatorios*</p>
+                    <br />
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>No. Linea:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" style="width:100%;" value="" id="lineaId" name="LineaId" readonly/>
+                        </div>
+                    </div>
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>Linea:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" style="width:100%;" value="" id="linea" name="Linea" />
+                        </div>
+                    </div>
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>No. Parte:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" style="width:100%;" value="" id="parteId" name="ParteId" />
+                        </div>
+                    </div>
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>Cantidad:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" style="width:100%;" value="" id="cantidad" name="Cantidad" />
+                        </div>
+                    </div>
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>Precio de Venta:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" style="width:100%;" value="" id="precioVenta" name="Precio" />
+                        </div>
+                    </div>
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>Descripcion:</label>
+                        </div>
+                        <div class="col-md-7">
+                            @Html.TextArea("Descripcion", htmlAttributes: new { @class = "input-text-lg", @id = "descripcion" })
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Confirmar</button>
+                    <a href="@Url.Action("Edit", "Requisition", new { id = Model.Requsiciones.FirstOrDefault().Id })" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+﻿@model App.ViewModels.FormularioRequisicion
+
+<div id="AddLineModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" style="transform:translate(0px,50px);">
+            @using (Html.BeginForm("Add", "RequisitionLine", FormMethod.Post))
+            {
+                @Html.Hidden("ReqId", Model.Requsiciones.FirstOrDefault().Id)
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dissmiss="modal">&times;</button>
+                    <h3 class="modal-title">Nueva Linea</h3>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger">Todos los campos son obligatorios*</p>
+                    <br />
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>No. Linea:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" style="width:100%;" value="" name="LineaId" />
+                        </div>
+                    </div>
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>Linea:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" style="width:100%;" value="" name="Linea" />
+                        </div>
+                    </div>
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>No. Parte:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" style="width:100%;" value="" name="ParteId" />
+                        </div>
+                    </div>
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>Cantidad:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" style="width:100%;" value="" name="Cantidad" />
+                        </div>
+                    </div>
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>Precio de Venta:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" style="width:100%;" value="" name="Precio" />
+                        </div>
+                    </div>
+                    <div class="row margin-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-4">
+                            <label>Descripcion:</label>
+                        </div>
+                        <div class="col-md-7">
+                            @Html.TextArea("Descripcion", htmlAttributes: new { @class = "input-text-lg" })
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Confirmar</button>
+                    <a href="@Url.Action("Edit", "Requisition", new { id = Model.Requsiciones.FirstOrDefault().Id })" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -71,7 +71,7 @@
                                             <option value="@Model.Requsiciones.FirstOrDefault().Departamento.Nombre">@Model.Requsiciones.FirstOrDefault().Departamento.Nombre</option>
                                             @foreach (var item in Model.Departamentos)
                                             {
-                                                if(item.Nombre == @Model.Requsiciones.FirstOrDefault().Departamento.Nombre)
+                                                if (item.Nombre == @Model.Requsiciones.FirstOrDefault().Departamento.Nombre)
                                                 {
                                                     continue;
                                                 }
@@ -205,7 +205,15 @@
                             SubTotal = item.Cantidad * item.PrecioVenta;
                             Total = SubTotal + (SubTotal * item.Requisicion.Interes);
 
-                            <tr>
+                            <tr class="getRow" getLineaId="@Html.DisplayFor(modelItem => item.Id)"
+                                getReqId="@Html.DisplayFor(modelItem => item.RequisicionId)"
+                                getLinea="@Html.DisplayFor(modelItem => item.Linea)"
+                                getParteId="@Html.DisplayFor(modelItem => item.ParteId)"
+                                getCantidad="@Html.DisplayFor(modelIten => item.Cantidad)"
+                                getPrecioVenta="@Html.DisplayFor(modelItem => item.PrecioVenta)"
+                                getDescripcion="@Html.DisplayFor(modelItem => item.Descripcion)"
+                                getCreadoPor="@Html.DisplayFor(modelItem => item.CreadoPor)"
+                                getCreado="@Html.DisplayFor(modelItem => item.Creado)">
                                 <td>
                                     @Numero
                                 </td>
@@ -228,10 +236,10 @@
                                     $ @Math.Round(Total, 2)
                                 </td>
                                 <td>
-                                    <a href="#EditLine"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a href="#EditLine" data-toggle="modal" data-target="#EditLineModal"><span class="glyphicon glyphicon-pencil"></span></a>
                                 </td>
                                 <td>
-                                    <a href="#DeleteLine"><span class="glyphicon glyphicon-trash"></span></a>
+                                    <a href="#DeleteLine" data-toggle="modal" data-target="#DeleteLineModal"><span class="glyphicon glyphicon-trash"></span></a>
                                 </td>
                             </tr>
 
@@ -349,80 +357,6 @@
     </div>
 }
 
-<div id="AddLineModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content" style="transform:translate(0px,50px);">
-            @using (Html.BeginForm("Add", "RequisitionLine", FormMethod.Post))
-            {
-                @Html.Hidden("ReqId", Model.Requsiciones.FirstOrDefault().Id)
-
-                <div class="modal-header">
-                    <button type="button" class="close" data-dissmiss="modal">&times;</button>
-                    <h3 class="modal-title">Nueva Linea</h3>
-                </div>
-                <div class="modal-body">
-                    <p class="text-danger">Todos los campos son obligatorios*</p>
-                    <br />
-                    <div class="row margin-height">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-4">
-                            <label>No. Linea:</label>
-                        </div>
-                        <div class="col-md-7">
-                            <input type="text" style="width:100%;" value="" name="LineaId" />
-                        </div>
-                    </div>
-                    <div class="row margin-height">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-4">
-                            <label>Linea:</label>
-                        </div>
-                        <div class="col-md-7">
-                            <input type="text" style="width:100%;" value="" name="Linea" />
-                        </div>
-                    </div>
-                    <div class="row margin-height">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-4">
-                            <label>No. Parte:</label>
-                        </div>
-                        <div class="col-md-7">
-                            <input type="text" style="width:100%;" value="" name="ParteId" />
-                        </div>
-                    </div>
-                    <div class="row margin-height">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-4">
-                            <label>Cantidad:</label>
-                        </div>
-                        <div class="col-md-7">
-                            <input type="text" style="width:100%;" value="" name="Cantidad" />
-                        </div>
-                    </div>
-                    <div class="row margin-height">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-4">
-                            <label>Precio de Venta:</label>
-                        </div>
-                        <div class="col-md-7">
-                            <input type="text" style="width:100%;" value="" name="Precio" />
-                        </div>
-                    </div>
-                    <div class="row margin-height">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-4">
-                            <label>Descripcion:</label>
-                        </div>
-                        <div class="col-md-7">
-                            @Html.TextArea("Descripcion", htmlAttributes: new { @class = "input-text-lg" })
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Confirmar</button>
-                    <a href="@Url.Action("Edit", "Requisition", new { id = Model.Requsiciones.FirstOrDefault().Id })" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
-                </div>
-            }
-        </div>
-    </div>
-</div>
+@{ Html.RenderPartial("~/Views/Requisition/Partials/_AddLineModal.cshtml"); }
+@{ Html.RenderPartial("~/Views/Requisition/Partials/_EditLineModal.cshtml"); }
+@{ Html.RenderPartial("~/Views/Requisition/Partials/_DeleteLineModal.cshtml"); }

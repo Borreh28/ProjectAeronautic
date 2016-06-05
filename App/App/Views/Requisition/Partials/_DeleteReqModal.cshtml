@@ -1,0 +1,44 @@
+﻿@model App.ViewModels.FormularioRequisicion
+
+<div id="DeleteReqModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" style="transform:translate(0px,50px);">
+            @using (Html.BeginForm("Delete", "Requisition", FormMethod.Post))
+            {
+                @Html.Hidden("Id", Model.Requsiciones.FirstOrDefault().Id)
+                @Html.Hidden("PeriodoId", Model.Requsiciones.FirstOrDefault().PeriodoId)
+                @Html.Hidden("DepartamentoId", Model.Requsiciones.FirstOrDefault().DepartamentoId)
+                @Html.Hidden("ProveedorId", Model.Requsiciones.FirstOrDefault().ProveedorId)
+                @Html.Hidden("MonedaId", Model.Requsiciones.FirstOrDefault().MonedaId)
+                @Html.Hidden("EstatusId", Model.Requsiciones.FirstOrDefault().EstatusId)
+                @Html.Hidden("TotalLineas", Model.Requsiciones.FirstOrDefault().TotalLineas)
+                @Html.Hidden("SubTotal", Model.Requsiciones.FirstOrDefault().SubTotal)
+                @Html.Hidden("Interes", Model.Requsiciones.FirstOrDefault().Interes)
+                @Html.Hidden("GranTotal", Model.Requsiciones.FirstOrDefault().GranTotal)
+                @Html.Hidden("CreadoPor", Model.Requsiciones.FirstOrDefault().CreadoPor)
+                @Html.Hidden("Creado", Model.Requsiciones.FirstOrDefault().Creado)
+                @Html.Hidden("ActualizadoPor", Model.Requsiciones.FirstOrDefault().ActualizadoPor)
+                @Html.Hidden("Actualizado", Model.Requsiciones.FirstOrDefault().Actualizado)
+                @Html.Hidden("Descripcion", Model.Requsiciones.FirstOrDefault().Descripcion)
+                @Html.Hidden("FechaRequisicion", Model.Requsiciones.FirstOrDefault().FechaRequisicion)
+                @Html.Hidden("FechaEntrega", Model.Requsiciones.FirstOrDefault().FechaEntrega)
+                @Html.Hidden("Comentarios", Model.Requsiciones.FirstOrDefault().Comentarios)
+                @Html.Hidden("PrioridadId", Model.Requsiciones.FirstOrDefault().PrioridadId)
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dissmiss="modal">&times;</button>
+                    <h3 class="modal-title">Eliminar Requisicion</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Esta seguro que desea eliminar esta requisicion?</p>
+                    <br />
+                    <p>@Html.CheckBox("Permanente", false) Eliminar de manera permanente.</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary" value="Si, deseo eliminarla." />
+                    <button type="button" class="btn btn-default" data-dissmiss="modal">No, deseo conservarla.</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

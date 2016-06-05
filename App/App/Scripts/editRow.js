@@ -4,7 +4,7 @@
     $("#reqId").val(($(this).attr('getReqId')));
     $("#linea").val(($(this).attr('getLinea')));
     $("#parteId").val(($(this).attr('getParteId')));
-    $("#Cantidad").val(($(this).attr('getCantidad')));
+    $("#cantidad").val(($(this).attr('getCantidad')));
     $("#precioVenta").val(($(this).attr('getPrecioVenta')));
     $("#descripcion").val(($(this).attr('getDescripcion')));
     $("#creadoPor").val(($(this).attr('getCreadoPor')));

@@ -1,0 +1,25 @@
+﻿@model App.ViewModels.FormularioRequisicion
+
+<div id="DeleteLineModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" style="transform:translate(0px,50px);">
+            @using (Html.BeginForm("Delete", "RequisitionLine", FormMethod.Post))
+            {
+                <input type="hidden" value="" id="lineaId" name="LineaId" readonly />
+                <input type="hidden" value="" id="reqId" name="ReqId" readonly />
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dissmiss="modal">&times;</button>
+                    <h3 class="modal-title">Eliminar Linea</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Esta seguro que desea eliminar esta requisicion?</p>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary" value="Si, deseo eliminarla." />
+                    <button type="button" class="btn btn-default" data-dissmiss="modal">No, deseo conservarla.</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -39,7 +39,7 @@ namespace App.DAL
             db.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Delete(string id)
         {
             RequisicionLinea data = db.Lineas.Find(id);
             db.Lineas.Remove(data);
