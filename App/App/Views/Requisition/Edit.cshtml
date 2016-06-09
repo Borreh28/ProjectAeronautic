@@ -68,7 +68,7 @@
                                 <div class="form-group">
                                     <div class="selectContainer">
                                         <select style="width:100%;" name="Departamento">
-                                            <option value="@Model.Requsiciones.FirstOrDefault().Departamento.Nombre">@Model.Requsiciones.FirstOrDefault().Departamento.Nombre</option>
+                                            <option value="@Model.Requsiciones.FirstOrDefault().Departamento.Nombre">@Model.Requsiciones.FirstOrDefault().Departamento.Id - @Model.Requsiciones.FirstOrDefault().Departamento.Nombre</option>
                                             @foreach (var item in Model.Departamentos)
                                             {
                                                 if (item.Nombre == @Model.Requsiciones.FirstOrDefault().Departamento.Nombre)
@@ -76,7 +76,7 @@
                                                     continue;
                                                 }
 
-                                                <option value="@Html.DisplayFor(modelItem => item.Nombre)">@Html.DisplayFor(modelItem => item.Nombre)</option>
+                                                <option value="@Html.DisplayFor(modelItem => item.Nombre)">@Html.DisplayFor(modelItem => item.Id) - @Html.DisplayFor(modelItem => item.Nombre)</option>
                                             }
                                         </select>
                                     </div>
@@ -166,6 +166,14 @@
                                 @Html.Hidden("PeriodoId", Model.Requsiciones.FirstOrDefault().PeriodoId)
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Total de Requisicion: </label>
+                            </div>
+                            <div class="col-md-2">
+                                <p>$ @Math.Round(Model.Requsiciones.FirstOrDefault().GranTotal, 2)</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -184,9 +192,6 @@
                             </th>
                             <th>
                                 Precio Venta
-                            </th>
-                            <th>
-                                Interes
                             </th>
                             <th>
                                 Subtotal
@@ -225,9 +230,6 @@
                                 </td>
                                 <td>
                                     $ @Html.DisplayFor(modelItem => item.PrecioVenta)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Requisicion.Interes)%
                                 </td>
                                 <td>
                                     $ @Math.Round(SubTotal, 2)

@@ -70,7 +70,7 @@
                         <select style="width:100%;" name="Departamento">
                             @foreach (var item in Model.Departamentos)
                             {
-                                <option value="@Html.DisplayFor(modelItem => item.Nombre)">@Html.DisplayFor(modelItem => item.Nombre)</option>
+                                <option value="@Html.DisplayFor(modelItem => item.Nombre)">@Html.DisplayFor(modelItem => item.Id) - @Html.DisplayFor(modelItem => item.Nombre)</option>
                             }
                         </select>
                     </div>

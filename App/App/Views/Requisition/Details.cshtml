@@ -25,7 +25,11 @@
                     <label>AQUI VA EL LOGO</label>
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-7">
+
+            </div>
+            <div class="col-md-2">
+                <a href="#SendForApproval" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;Send for Approval</a>
             </div>
         </div>
         <div class="row">
@@ -117,6 +121,14 @@
                             <p>@Model.Requsiciones.FirstOrDefault().Periodo.Nombre</p>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Total de Requisicion: </label>
+                        </div>
+                        <div class="col-md-2">
+                            <p>$ @Math.Round(Model.Requsiciones.FirstOrDefault().GranTotal, 2)</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -135,9 +147,6 @@
                         </th>
                         <th>
                             Precio Venta
-                        </th>
-                        <th>
-                            Interes
                         </th>
                         <th>
                             Subtotal
@@ -166,9 +175,6 @@
                             </td>
                             <td>
                                 $ @Html.DisplayFor(modelItem => item.PrecioVenta)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Requisicion.Interes)%
                             </td>
                             <td>
                                 $ @Math.Round(SubTotal, 2)
