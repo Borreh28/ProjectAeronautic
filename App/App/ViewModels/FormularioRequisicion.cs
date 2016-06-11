@@ -5,11 +5,11 @@ namespace App.ViewModels
 {
     public class FormularioRequisicion
     {
-        public virtual IEnumerable<Requisicion> Requsiciones { get; set; }
-        public virtual IEnumerable<RequisicionLinea> Lineas { get; set; }
+        public virtual IEnumerable<Requisition> Requsiciones { get; set; }
+        public virtual IEnumerable<RequisitionLine> Lineas { get; set; }
         public virtual IEnumerable<Proveedor> Proveedores { get; set; }
-        public virtual IEnumerable<Departamento> Departamentos { get; set; }
-        public virtual IEnumerable<Estatus> Estatus { get; set; }
+        public virtual IEnumerable<Department> Departamentos { get; set; }
+        public virtual IEnumerable<Status> Estatus { get; set; }
         public virtual IEnumerable<Periodo> Periodos { get; set; }
         public virtual IEnumerable<Prioridad> Prioridades { get; set; }
     }

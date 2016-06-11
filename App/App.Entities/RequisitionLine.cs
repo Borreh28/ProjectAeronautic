@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace App.Entities
 {
-    public class RequisicionLinea
+    public class RequisitionLine
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public int RequisicionId { get; set; }
         public int Linea { get; set; }
         public int ParteId { get; set; }
@@ -17,6 +17,7 @@ namespace App.Entities
         public int ActualizadoPor { get; set; }
         public DateTime Actualizado { get; set; }
 
-        public virtual Requisicion Requisicion { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual Requisition Requisicion { get; set; }
     }
 }

@@ -11,8 +11,8 @@ namespace App.Controllers
 {
     public class RequisitionLineController : Controller
     {
-        Requisicion Req;
-        RequisicionLinea ReqLin;
+        Requisition Req;
+        RequisitionLine ReqLin;
         FormularioRequisicion FormReq;
 
         RequisicionRepository ReqRepo;
@@ -25,8 +25,8 @@ namespace App.Controllers
 
         public RequisitionLineController()
         {
-            Req = new Requisicion();
-            ReqLin = new RequisicionLinea();
+            Req = new Requisition();
+            ReqLin = new RequisitionLine();
             FormReq = new FormularioRequisicion();
 
             ReqRepo = new RequisicionRepository();
@@ -41,7 +41,7 @@ namespace App.Controllers
         [HttpPost]
         public ActionResult Add(FormCollection form)
         {
-            ReqLin.Id = form["LineaId"];
+            ReqLin.Id = Convert.ToInt32( form["LineaId"]);
             ReqLin.RequisicionId = Convert.ToInt32(form["ReqId"]);
             ReqLin.Linea = Convert.ToInt32(form["Linea"]);
             ReqLin.ParteId = Convert.ToInt32(form["ParteId"]);
@@ -61,7 +61,7 @@ namespace App.Controllers
         [HttpPost]
         public ActionResult Edit(FormCollection form)
         {
-            ReqLin.Id = form["LineaId"];
+            ReqLin.Id = Convert.ToInt32(form["LineaId"]);
             ReqLin.RequisicionId = Convert.ToInt32(form["ReqId"]);
             ReqLin.Linea = Convert.ToInt32(form["Linea"]);
             ReqLin.ParteId = Convert.ToInt32(form["ParteId"]);
@@ -81,7 +81,7 @@ namespace App.Controllers
         [HttpPost]
         public ActionResult Delete(FormCollection form)
         {
-            string LineaId = form["LineaId"];
+            int LineaId = Convert.ToInt32(form["LineaId"]);
             int ReqId = Convert.ToInt32(form["ReqId"]);
 
             ReqLinRepo.Delete(LineaId);

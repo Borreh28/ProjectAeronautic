@@ -17,28 +17,28 @@ namespace App.DAL
             db = new Contexto();
         }
 
-        public IEnumerable<Requisicion> GetAll()
+        public IEnumerable<Requisition> GetAll()
         {
             return db.Requisiciones.ToList();
         }
 
-        public IEnumerable<Requisicion> GetAllActive()
+        public IEnumerable<Requisition> GetAllActive()
         {
             return db.Requisiciones.Where(w => w.Activo == true).ToList();
         }
 
-        public IEnumerable<Requisicion> GetById(int id)
+        public IEnumerable<Requisition> GetById(int id)
         {
             return db.Requisiciones.Where(w => w.Id == id).ToList();
         }
 
-        public void Add(Requisicion data)
+        public void Add(Requisition data)
         {
             db.Requisiciones.Add(data);
             db.SaveChanges();
         }
 
-        public void Update(Requisicion data)
+        public void Update(Requisition data)
         {
             db.Entry(data).State = EntityState.Modified;
             db.SaveChanges();
@@ -46,7 +46,7 @@ namespace App.DAL
 
         public void Delete(int id)
         {
-            Requisicion data = db.Requisiciones.Find(id);
+            Requisition data = db.Requisiciones.Find(id);
             db.Requisiciones.Remove(data);
             db.SaveChanges();
         }

@@ -8,17 +8,17 @@ namespace App.DAL.Mapeo
     {
         public DepartamentoMapper(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Departamento>().ToTable("TBL_Departamento");
-            modelBuilder.Entity<Departamento>().HasKey(d => d.Id);
+            modelBuilder.Entity<Department>().ToTable("TBL_Departamento");
+            modelBuilder.Entity<Department>().HasKey(d => d.Id);
 
-            modelBuilder.Entity<Departamento>().Property(d => d.Id).HasColumnName("Departamento_ID").HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            modelBuilder.Entity<Departamento>().Property(d => d.EdificioId).HasColumnName("Edificio_ID").IsRequired();
-            modelBuilder.Entity<Departamento>().Property(d => d.Activo).HasColumnName("Activo").IsRequired();
-            modelBuilder.Entity<Departamento>().Property(d => d.Nombre).HasColumnName("Nombre").HasMaxLength(60).IsRequired();
-            modelBuilder.Entity<Departamento>().Property(d => d.CreadoPor).HasColumnName("CreatedBy").IsRequired();
-            modelBuilder.Entity<Departamento>().Property(d => d.Creado).HasColumnName("Created").IsRequired();
-            modelBuilder.Entity<Departamento>().Property(d => d.ActualizadoPor).HasColumnName("UpdatedBy").IsRequired();
-            modelBuilder.Entity<Departamento>().Property(d => d.Actualizado).HasColumnName("Updated").IsRequired();
+            modelBuilder.Entity<Department>().Property(d => d.Id).HasColumnName("Departamento_ID").HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<Department>().Property(d => d.BuildingId).HasColumnName("Edificio_ID").IsRequired();
+            modelBuilder.Entity<Department>().Property(d => d.Active).HasColumnName("Activo").IsRequired();
+            modelBuilder.Entity<Department>().Property(d => d.Name).HasColumnName("Nombre").HasMaxLength(60).IsRequired();
+            modelBuilder.Entity<Department>().Property(d => d.CreatedBy).HasColumnName("CreatedBy").IsRequired();
+            modelBuilder.Entity<Department>().Property(d => d.Created).HasColumnName("Created").IsRequired();
+            modelBuilder.Entity<Department>().Property(d => d.UpdatedBy).HasColumnName("UpdatedBy").IsRequired();
+            modelBuilder.Entity<Department>().Property(d => d.Updated).HasColumnName("Updated").IsRequired();
         }
     }
 }

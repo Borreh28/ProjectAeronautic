@@ -11,8 +11,8 @@ namespace App.Controllers
 {
     public class RequisitionController : Controller
     {
-        Requisicion Req;
-        RequisicionLinea ReqLin;
+        Requisition Req;
+        RequisitionLine ReqLin;
         FormularioRequisicion FormReq;
 
         RequisicionRepository ReqRepo;
@@ -25,8 +25,8 @@ namespace App.Controllers
 
         public RequisitionController()
         {
-            Req = new Requisicion();
-            ReqLin = new RequisicionLinea();
+            Req = new Requisition();
+            ReqLin = new RequisitionLine();
             FormReq = new FormularioRequisicion();
 
             ReqRepo = new RequisicionRepository();

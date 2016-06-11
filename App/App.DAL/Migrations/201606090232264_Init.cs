@@ -72,7 +72,7 @@ namespace App.DAL.Migrations
                 "dbo.TBL_RequisicionLinea",
                 c => new
                     {
-                        RequisicionLinea_ID = c.String(nullable: false, maxLength: 10),
+                        RequisicionLinea_ID = c.Int(nullable: false, identity: true),
                         Requisicion_ID = c.Int(nullable: false),
                         Linea = c.Int(nullable: false),
                         C_Parte_ID = c.Int(nullable: false),

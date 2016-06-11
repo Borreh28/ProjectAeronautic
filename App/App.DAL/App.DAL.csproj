@@ -56,9 +56,9 @@
     <Compile Include="Mapeo\ProveedorMapper.cs" />
     <Compile Include="Mapeo\RequisicionMapper.cs" />
     <Compile Include="Mapeo\RequisicionLineaMapper.cs" />
-    <Compile Include="Migrations\201606020317139_Init.cs" />
-    <Compile Include="Migrations\201606020317139_Init.Designer.cs">
-      <DependentUpon>201606020317139_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201606090232264_Init.cs" />
+    <Compile Include="Migrations\201606090232264_Init.Designer.cs">
+      <DependentUpon>201606090232264_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,8 +81,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606020317139_Init.resx">
-      <DependentUpon>201606020317139_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606090232264_Init.resx">
+      <DependentUpon>201606090232264_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

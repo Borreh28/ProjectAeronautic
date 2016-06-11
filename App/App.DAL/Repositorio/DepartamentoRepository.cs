@@ -16,14 +16,14 @@ namespace App.DAL
             db = new Contexto();
         }
 
-        public IEnumerable<Departamento> GetAll()
+        public IEnumerable<Department> GetAll()
         {
             return db.Departamentos.ToList();
         }
 
-        public IEnumerable<Departamento> GetByName(string name)
+        public IEnumerable<Department> GetByName(string name)
         {
-            return db.Departamentos.Where(w => w.Nombre == name).ToList();
+            return db.Departamentos.Where(w => w.Name == name).ToList();
         }
     }
 }

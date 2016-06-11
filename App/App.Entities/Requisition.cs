@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace App.Entities
 {
-    public class Requisicion
+    public class Requisition
     {
-        public Requisicion()
+        public Requisition()
         {
-            Lineas = new List<RequisicionLinea>();
+            Lineas = new List<RequisitionLine>();
         }
 
         public int Id { get; set; }
@@ -31,11 +31,11 @@ namespace App.Entities
         public string PrioridadId { get; set; }
         public bool Activo { get; set; }
 
-        public virtual ICollection<RequisicionLinea> Lineas { get; set; }
+        public virtual ICollection<RequisitionLine> Lineas { get; set; }
         public virtual Proveedor Proveedor { get; set; }
-        public virtual Departamento Departamento { get; set; }
+        public virtual Department Departamento { get; set; }
         public virtual Periodo Periodo { get; set; }
-        public virtual Estatus Estatus { get; set; }
+        public virtual Status Estatus { get; set; }
         public virtual Prioridad Prioridad { get; set; }
     }
 }

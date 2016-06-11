@@ -10,12 +10,12 @@ namespace App.Entities
     {
         public Periodo()
         {
-            Requisiciones = new List<Requisicion>();
+            Requisiciones = new List<Requisition>();
         }
 
         public int Id { get; set; }
         public string Nombre { get; set; }
 
-        public virtual ICollection<Requisicion> Requisiciones { get; set; }
+        public virtual ICollection<Requisition> Requisiciones { get; set; }
     }
 }

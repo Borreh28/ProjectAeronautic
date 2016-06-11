@@ -7,7 +7,7 @@ namespace App.Entities
     {
         public Proveedor()
         {
-            Requisiciones = new List<Requisicion>();
+            Requisiciones = new List<Requisition>();
         }
 
         public int Id { get; set; }
@@ -18,6 +18,6 @@ namespace App.Entities
         public int ActualizadoPor { get; set; }
         public DateTime Actualizado { get; set; }
 
-        public virtual ICollection<Requisicion> Requisiciones { get; set; }
+        public virtual ICollection<Requisition> Requisiciones { get; set; }
     }
 }

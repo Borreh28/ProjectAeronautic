@@ -17,31 +17,31 @@ namespace App.DAL
             db = new Contexto();
         }
 
-        public IEnumerable<RequisicionLinea> GetAll()
+        public IEnumerable<RequisitionLine> GetAll()
         {
             return db.Lineas.ToList();
         }
 
-        public IEnumerable<RequisicionLinea> GetByIdRequisicion(int id)
+        public IEnumerable<RequisitionLine> GetByIdRequisicion(int id)
         {
             return db.Lineas.Where(w => w.RequisicionId == id).ToList();
         }
 
-        public void Add(RequisicionLinea data)
+        public void Add(RequisitionLine data)
         {
             db.Lineas.Add(data);
             db.SaveChanges();
         }
 
-        public void Update(RequisicionLinea data)
+        public void Update(RequisitionLine data)
         {
             db.Entry(data).State = EntityState.Modified;
             db.SaveChanges();
         }
 
-        public void Delete(string id)
+        public void Delete(int id)
         {
-            RequisicionLinea data = db.Lineas.Find(id);
+            RequisitionLine data = db.Lineas.Find(id);
             db.Lineas.Remove(data);
             db.SaveChanges();
         }

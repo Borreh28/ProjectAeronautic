@@ -10,11 +10,11 @@ namespace App.Entities
     {
         public Prioridad()
         {
-            Requisiciones = new List<Requisicion>();
+            Requisiciones = new List<Requisition>();
         }
 
         public string Id { get; set; }
 
-        public virtual ICollection<Requisicion> Requisiciones { get; set; }
+        public virtual ICollection<Requisition> Requisiciones { get; set; }
     }
 }
