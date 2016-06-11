@@ -24,7 +24,7 @@ namespace App.DAL
 
         public IEnumerable<RequisitionLine> GetByIdRequisicion(int id)
         {
-            return db.Lineas.Where(w => w.RequisicionId == id).ToList();
+            return db.Lineas.Where(w => w.RequisitionId == id).ToList();
         }
 
         public void Add(RequisitionLine data)

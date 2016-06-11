@@ -24,7 +24,7 @@ namespace App.DAL
 
         public IEnumerable<Requisition> GetAllActive()
         {
-            return db.Requisiciones.Where(w => w.Activo == true).ToList();
+            return db.Requisiciones.Where(w => w.Active == true).ToList();
         }
 
         public IEnumerable<Requisition> GetById(int id)

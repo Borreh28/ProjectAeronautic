@@ -7,35 +7,36 @@ namespace App.Entities
     {
         public Requisition()
         {
-            Lineas = new List<RequisitionLine>();
+            Lines = new List<RequisitionLine>();
         }
 
         public int Id { get; set; }
-        public int PeriodoId { get; set; }
-        public int DepartamentoId { get; set; }
-        public int ProveedorId { get; set; }
-        public int MonedaId { get; set; }
-        public int EstatusId { get; set; }
-        public int TotalLineas { get; set; }
-        public decimal SubTotal { get; set; }
-        public decimal Interes { get; set; }
-        public decimal GranTotal { get; set; }
-        public int CreadoPor { get; set; }
-        public DateTime Creado { get; set; }
-        public int ActualizadoPor { get; set; }
-        public DateTime Actualizado { get; set; }
-        public string Descripcion { get; set; }
-        public DateTime FechaRequisicion { get; set; }
-        public DateTime FechaEntrega { get; set; }
-        public string Comentarios { get; set; }
-        public string PrioridadId { get; set; }
-        public bool Activo { get; set; }
 
-        public virtual ICollection<RequisitionLine> Lineas { get; set; }
-        public virtual Proveedor Proveedor { get; set; }
-        public virtual Department Departamento { get; set; }
-        public virtual Periodo Periodo { get; set; }
-        public virtual Status Estatus { get; set; }
-        public virtual Prioridad Prioridad { get; set; }
+        public int PeriodId { get; set; }
+        public int DepartmentId { get; set; }
+        public int SupplierId { get; set; }
+        public int StatusId { get; set; }
+        public int PriorityId { get; set; }
+
+        public bool Active { get; set; }
+        public int TotalLines { get; set; }
+        public decimal SubTotal { get; set; }
+        public decimal Interest { get; set; }
+        public decimal Total { get; set; }
+        public DateTime RequisitionDate { get; set; }
+        public DateTime DeliveryDate { get; set; }
+        public string Description { get; set; }
+        public string Commentaries { get; set; }
+        public int CreatedBy { get; set; }
+        public DateTime Created { get; set; }
+        public int UpdatedBy { get; set; }
+        public DateTime Updated { get; set; }
+
+        public virtual Supplier Supplier { get; set; }
+        public virtual Department Department { get; set; }
+        public virtual Period Period { get; set; }
+        public virtual Status Status { get; set; }
+        public virtual Priority Priority { get; set; }
+        public virtual ICollection<RequisitionLine> Lines { get; set; }
     }
 }

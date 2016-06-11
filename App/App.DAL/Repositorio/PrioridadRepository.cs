@@ -16,12 +16,12 @@ namespace App.DAL
             db = new Contexto();
         }
 
-        public IEnumerable<Prioridad> GetAll()
+        public IEnumerable<Priority> GetAll()
         {
             return db.Prioridad.ToList();
         }
 
-        public IEnumerable<Prioridad> GetById(string id)
+        public IEnumerable<Priority> GetById(string id)
         {
             return db.Prioridad.Where(w => w.Id == id).ToList();
         }

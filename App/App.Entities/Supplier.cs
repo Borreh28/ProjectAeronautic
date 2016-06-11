@@ -3,15 +3,16 @@ using System.Collections.Generic;
 
 namespace App.Entities
 {
-    public class Status
+    public class Supplier
     {
-        public Status()
+        public Supplier()
         {
             Requisitions = new List<Requisition>();
         }
 
         public int Id { get; set; }
 
+        public bool Active { get; set; }
         public string Name { get; set; }
         public int CreatedBy { get; set; }
         public DateTime Created { get; set; }
@@ -19,5 +20,6 @@ namespace App.Entities
         public DateTime Updated { get; set; }
 
         public virtual ICollection<Requisition> Requisitions { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

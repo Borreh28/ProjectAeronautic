@@ -16,14 +16,14 @@ namespace App.DAL
             db = new Contexto();
         }
 
-        public IEnumerable<Proveedor> GetAll()
+        public IEnumerable<Supplier> GetAll()
         {
             return db.Proveedores.ToList();
         }
 
-        public IEnumerable<Proveedor> GetByName(string name)
+        public IEnumerable<Supplier> GetByName(string name)
         {
-            return db.Proveedores.Where(w => w.Nombre == name).ToList();
+            return db.Proveedores.Where(w => w.Name == name).ToList();
         }
     }
 }

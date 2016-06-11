@@ -8,11 +8,11 @@ namespace App.DAL.Mapeo
     {
         public PeriodoMapper(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Periodo>().ToTable("TBL_Periodo");
-            modelBuilder.Entity<Periodo>().HasKey(p => p.Id);
+            modelBuilder.Entity<Period>().ToTable("TBL_Periodo");
+            modelBuilder.Entity<Period>().HasKey(p => p.Id);
 
-            modelBuilder.Entity<Periodo>().Property(p => p.Id).HasColumnName("Periodo_ID").HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            modelBuilder.Entity<Periodo>().Property(p => p.Nombre).HasColumnName("Nombre").HasMaxLength(60).IsRequired();
+            modelBuilder.Entity<Period>().Property(p => p.Id).HasColumnName("Periodo_ID").HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<Period>().Property(p => p.Name).HasColumnName("Nombre").HasMaxLength(60).IsRequired();
         }
     }
 }

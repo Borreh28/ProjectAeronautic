@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace App.Entities
 {
-    public class Status
+    public class Period
     {
-        public Status()
+        public Period()
         {
             Requisitions = new List<Requisition>();
         }

@@ -11,6 +11,10 @@ namespace App.Entities
         }
 
         public int Id { get; set; }
+
+        public int SupplierId { get; set; }
+        public int CategoryId { get; set; }
+
         public string Name { get; set; }
         public decimal UnitPrice { get; set; }
         public decimal CostPrice { get; set; }
@@ -26,9 +30,7 @@ namespace App.Entities
         public int UpdateBy { get; set; }
         public DateTime Updated { get; set; }
 
-        public int SupplierId { get; set; }
-        public int CategoryId { get; set; }
-
-        public virtual IEnumerable<RequisitionLine> Lines { get; set; }
+        public virtual Supplier Supplier { get; set; }
+        public virtual ICollection<RequisitionLine> Lines { get; set; }
     }
 }

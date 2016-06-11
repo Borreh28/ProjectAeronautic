@@ -7,10 +7,10 @@ namespace App.DAL.Mapeo
     {
         public PrioridadMapper(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Prioridad>().ToTable("TBL_Prioridad");
-            modelBuilder.Entity<Prioridad>().HasKey(p => p.Id);
+            modelBuilder.Entity<Priority>().ToTable("TBL_Prioridad");
+            modelBuilder.Entity<Priority>().HasKey(p => p.Id);
 
-            modelBuilder.Entity<Prioridad>().Property(p => p.Id).HasColumnName("Prioridad_ID").HasMaxLength(60).IsRequired();
+            modelBuilder.Entity<Priority>().Property(p => p.Id).HasColumnName("Prioridad_ID").HasMaxLength(60).IsRequired();
         }
     }
 }

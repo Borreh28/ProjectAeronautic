@@ -79,25 +79,25 @@ namespace App.Controllers
             var Periodos = FormReq.Periodos;
             Periodos = PerRepo.GetByName(Periodo);
             
-            Req.PeriodoId = Periodos.FirstOrDefault().Id;
-            Req.DepartamentoId = Departamentos.FirstOrDefault().Id;
-            Req.ProveedorId = Proveedores.FirstOrDefault().Id;
+            Req.PeriodId = Periodos.FirstOrDefault().Id;
+            Req.DepartmentId = Departamentos.FirstOrDefault().Id;
+            Req.SupplierId = Proveedores.FirstOrDefault().Id;
             Req.MonedaId = 0;
-            Req.EstatusId = 1;
-            Req.TotalLineas = 0;
+            Req.StatusId = 1;
+            Req.TotalLines = 0;
             Req.SubTotal = 0;
-            Req.Interes = 0;
-            Req.GranTotal = 0;
-            Req.CreadoPor = 0;
-            Req.Creado = DateTime.Now;
-            Req.ActualizadoPor = 0;
-            Req.Actualizado = DateTime.Now;
-            Req.Descripcion = form["Descripcion"];
-            Req.FechaRequisicion = DateTime.Parse(form["FechaRequisicion"]);
-            Req.FechaEntrega = DateTime.Parse(form["FechaEntrega"]);
-            Req.Comentarios = form["Comentarios"];
-            Req.PrioridadId = form["Prioridad"];
-            Req.Activo = true;
+            Req.Interest = 0;
+            Req.Total = 0;
+            Req.CreatedBy = 0;
+            Req.Created = DateTime.Now;
+            Req.UpdatedBy = 0;
+            Req.Updated = DateTime.Now;
+            Req.Description = form["Descripcion"];
+            Req.RequisitionDate = DateTime.Parse(form["FechaRequisicion"]);
+            Req.DeliveryDate = DateTime.Parse(form["FechaEntrega"]);
+            Req.Commentaries = form["Comentarios"];
+            Req.PriorityId = form["Prioridad"];
+            Req.Active = true;
 
             ReqRepo.Add(Req);
 
@@ -126,25 +126,25 @@ namespace App.Controllers
             Prvdrs = ProvRepo.GetByName(Prvdr);
 
             Req.Id = Int32.Parse(form["ReqId"]);
-            Req.PeriodoId = Int32.Parse(form["PeriodoId"]);
-            Req.DepartamentoId = Deptos.FirstOrDefault().Id;
-            Req.ProveedorId = Prvdrs.FirstOrDefault().Id;
+            Req.PeriodId = Int32.Parse(form["PeriodoId"]);
+            Req.DepartmentId = Deptos.FirstOrDefault().Id;
+            Req.SupplierId = Prvdrs.FirstOrDefault().Id;
             Req.MonedaId = Int32.Parse(form["MonedaId"]);
-            Req.EstatusId = Int32.Parse(form["EstatusId"]);
-            Req.TotalLineas = Int32.Parse(form["TotalLineas"]);
+            Req.StatusId = Int32.Parse(form["EstatusId"]);
+            Req.TotalLines = Int32.Parse(form["TotalLineas"]);
             Req.SubTotal = Decimal.Parse(form["SubTotal"]);
-            Req.Interes = 0;
-            Req.GranTotal = Decimal.Parse(form["GranTotal"]);
-            Req.CreadoPor = Int32.Parse(form["CreadoPor"]);
-            Req.Creado = DateTime.Parse(form["Creado"]);
-            Req.ActualizadoPor = Int32.Parse(form["ActualizadoPor"]);
-            Req.Actualizado = DateTime.Now;
-            Req.Descripcion = form["Descripcion"];
-            Req.FechaRequisicion = DateTime.Parse(form["FechaRequisicion"]);
-            Req.FechaEntrega = DateTime.Parse(form["FechaEntrega"]);
-            Req.Comentarios = form["Comentarios"];
-            Req.PrioridadId = form["PrioridadId"];
-            Req.Activo = Convert.ToBoolean(form["Activo"]);
+            Req.Interest = 0;
+            Req.Total = Decimal.Parse(form["GranTotal"]);
+            Req.CreatedBy = Int32.Parse(form["CreadoPor"]);
+            Req.Created = DateTime.Parse(form["Creado"]);
+            Req.UpdatedBy = Int32.Parse(form["ActualizadoPor"]);
+            Req.Updated = DateTime.Now;
+            Req.Description = form["Descripcion"];
+            Req.RequisitionDate = DateTime.Parse(form["FechaRequisicion"]);
+            Req.DeliveryDate = DateTime.Parse(form["FechaEntrega"]);
+            Req.Commentaries = form["Comentarios"];
+            Req.PriorityId = form["PrioridadId"];
+            Req.Active = Convert.ToBoolean(form["Activo"]);
 
             ReqRepo.Update(Req);
 
@@ -172,25 +172,25 @@ namespace App.Controllers
             else
             {
                 Req.Id = Int32.Parse(form["Id"]);
-                Req.PeriodoId = Int32.Parse(form["PeriodoId"]);
-                Req.DepartamentoId = Int32.Parse(form["DepartamentoId"]);
-                Req.ProveedorId = Int32.Parse(form["ProveedorId"]);
+                Req.PeriodId = Int32.Parse(form["PeriodoId"]);
+                Req.DepartmentId = Int32.Parse(form["DepartamentoId"]);
+                Req.SupplierId = Int32.Parse(form["ProveedorId"]);
                 Req.MonedaId = Int32.Parse(form["MonedaId"]);
-                Req.EstatusId = Int32.Parse(form["EstatusId"]);
-                Req.TotalLineas = Int32.Parse(form["TotalLineas"]);
+                Req.StatusId = Int32.Parse(form["EstatusId"]);
+                Req.TotalLines = Int32.Parse(form["TotalLineas"]);
                 Req.SubTotal = Decimal.Parse(form["SubTotal"]);
-                Req.Interes = Decimal.Parse(form["Interes"]);
-                Req.GranTotal = Decimal.Parse(form["GranTotal"]);
-                Req.CreadoPor = Int32.Parse(form["CreadoPor"]);
-                Req.Creado = DateTime.Parse(form["Creado"]);
-                Req.ActualizadoPor = Int32.Parse(form["ActualizadoPor"]);
-                Req.Actualizado = DateTime.Parse(form["Actualizado"]);
-                Req.Descripcion = form["Descripcion"];
-                Req.FechaRequisicion = DateTime.Parse(form["FechaRequisicion"]);
-                Req.FechaEntrega = DateTime.Parse(form["FechaEntrega"]);
-                Req.Comentarios = form["Comentarios"];
-                Req.PrioridadId = form["PrioridadId"];
-                Req.Activo = false;
+                Req.Interest = Decimal.Parse(form["Interes"]);
+                Req.Total = Decimal.Parse(form["GranTotal"]);
+                Req.CreatedBy = Int32.Parse(form["CreadoPor"]);
+                Req.Created = DateTime.Parse(form["Creado"]);
+                Req.UpdatedBy = Int32.Parse(form["ActualizadoPor"]);
+                Req.Updated = DateTime.Parse(form["Actualizado"]);
+                Req.Description = form["Descripcion"];
+                Req.RequisitionDate = DateTime.Parse(form["FechaRequisicion"]);
+                Req.DeliveryDate = DateTime.Parse(form["FechaEntrega"]);
+                Req.Commentaries = form["Comentarios"];
+                Req.PriorityId = form["PrioridadId"];
+                Req.Active = false;
 
                 ReqRepo.Update(Req);
             }

@@ -42,40 +42,40 @@ namespace App.Controllers
         public ActionResult Add(FormCollection form)
         {
             ReqLin.Id = Convert.ToInt32( form["LineaId"]);
-            ReqLin.RequisicionId = Convert.ToInt32(form["ReqId"]);
-            ReqLin.Linea = Convert.ToInt32(form["Linea"]);
-            ReqLin.ParteId = Convert.ToInt32(form["ParteId"]);
-            ReqLin.Cantidad = Convert.ToInt32(form["Cantidad"]);
-            ReqLin.PrecioVenta = Convert.ToDecimal(form["Precio"]);
-            ReqLin.Descripcion = form["Descripcion"];
-            ReqLin.CreadoPor = 0;
-            ReqLin.Creado = DateTime.Now;
-            ReqLin.ActualizadoPor = 0;
-            ReqLin.Actualizado = DateTime.Now;
+            ReqLin.RequisitionId = Convert.ToInt32(form["ReqId"]);
+            ReqLin.Line = Convert.ToInt32(form["Linea"]);
+            ReqLin.ProductId = Convert.ToInt32(form["ParteId"]);
+            ReqLin.Quantity = Convert.ToInt32(form["Cantidad"]);
+            ReqLin.SalePrice = Convert.ToDecimal(form["Precio"]);
+            ReqLin.Description = form["Descripcion"];
+            ReqLin.CreatedBy = 0;
+            ReqLin.Created = DateTime.Now;
+            ReqLin.UpdatedBy = 0;
+            ReqLin.Updated = DateTime.Now;
 
             ReqLinRepo.Add(ReqLin);
 
-            return RedirectToAction("Edit", "Requisition", new { id = ReqLin.RequisicionId });
+            return RedirectToAction("Edit", "Requisition", new { id = ReqLin.RequisitionId });
         }
 
         [HttpPost]
         public ActionResult Edit(FormCollection form)
         {
             ReqLin.Id = Convert.ToInt32(form["LineaId"]);
-            ReqLin.RequisicionId = Convert.ToInt32(form["ReqId"]);
-            ReqLin.Linea = Convert.ToInt32(form["Linea"]);
-            ReqLin.ParteId = Convert.ToInt32(form["ParteId"]);
-            ReqLin.Cantidad = Convert.ToInt32(form["Cantidad"]);
-            ReqLin.PrecioVenta = Convert.ToDecimal(form["Precio"]);
-            ReqLin.Descripcion = form["Descripcion"];
-            ReqLin.CreadoPor = Convert.ToInt32(form["CreadoPor"]);
-            ReqLin.Creado = Convert.ToDateTime(form["Creado"]);
-            ReqLin.ActualizadoPor = 0;
-            ReqLin.Actualizado = DateTime.Now;
+            ReqLin.RequisitionId = Convert.ToInt32(form["ReqId"]);
+            ReqLin.Line = Convert.ToInt32(form["Linea"]);
+            ReqLin.ProductId = Convert.ToInt32(form["ParteId"]);
+            ReqLin.Quantity = Convert.ToInt32(form["Cantidad"]);
+            ReqLin.SalePrice = Convert.ToDecimal(form["Precio"]);
+            ReqLin.Description = form["Descripcion"];
+            ReqLin.CreatedBy = Convert.ToInt32(form["CreadoPor"]);
+            ReqLin.Created = Convert.ToDateTime(form["Creado"]);
+            ReqLin.UpdatedBy = 0;
+            ReqLin.Updated = DateTime.Now;
 
             ReqLinRepo.Update(ReqLin);
 
-            return RedirectToAction("Edit", "Requisition", new { id = ReqLin.RequisicionId });
+            return RedirectToAction("Edit", "Requisition", new { id = ReqLin.RequisitionId });
         }
 
         [HttpPost]
