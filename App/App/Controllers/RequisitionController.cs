@@ -2,7 +2,6 @@
 using App.Entities;
 using App.ViewModels;
 using System;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace App.Controllers
@@ -102,34 +101,26 @@ namespace App.Controllers
         [HttpPost]
         public ActionResult Edit(FormCollection form)
         {
-            string DepartmentName = form["Departamento"];
-            var Departments = requisitionForm.Departments;
-            Departments = departmentRepository.GetByName(DepartmentName);
-
-            string SupplierName = form["Proveedor"];
-            var Suppliers = requisitionForm.Suppliers;
-            Suppliers = supplierRepository.GetByName(SupplierName);
-
-            requisition.Id = Int32.Parse(form["ReqId"]);
-            requisition.PeriodId = Int32.Parse(form["PeriodoId"]);
-            requisition.DepartmentId = Departments.FirstOrDefault().Id;
-            requisition.SupplierId = Suppliers.FirstOrDefault().Id;
-            requisition.StatusId = Int32.Parse(form["EstatusId"]);
-            requisition.TotalLines = Int32.Parse(form["TotalLineas"]);
+            requisition.Id = Int32.Parse(form["RequisitionId"]);
+            requisition.PeriodId = Int32.Parse(form["PeriodId"]);
+            requisition.DepartmentId = Int32.Parse(form["DepartmentId"]);
+            requisition.SupplierId = Int32.Parse(form["SupplierId"]);
+            requisition.StatusId = Int32.Parse(form["StatusId"]);
+            requisition.PriorityId = Convert.ToInt32(form["PriorityId"]);
+            requisition.Active = Convert.ToBoolean(form["Active"]);
+            requisition.TotalLines = Int32.Parse(form["TotalLines"]);
             requisition.SubTotal = Decimal.Parse(form["SubTotal"]);
-            requisition.Interest = 0;
-            requisition.Total = Decimal.Parse(form["GranTotal"]);
-            requisition.CreatedBy = Int32.Parse(form["CreadoPor"]);
-            requisition.Created = DateTime.Parse(form["Creado"]);
-            requisition.UpdatedBy = Int32.Parse(form["ActualizadoPor"]);
+            requisition.Interest = Decimal.Parse(form["Interest"]);
+            requisition.Total = Decimal.Parse(form["Total"]);
+            requisition.RequisitionDate = DateTime.Parse(form["RequisitionDate"]);
+            requisition.DeliveryDate = DateTime.Parse(form["DeliveryDate"]);
+            requisition.Description = form["Description"];
+            requisition.Commentaries = form["Commentaries"];
+            requisition.CreatedBy = Int32.Parse(form["CreatedBy"]);
+            requisition.Created = DateTime.Parse(form["Created"]);
+            requisition.UpdatedBy = 0;
             requisition.Updated = DateTime.Now;
-            requisition.Description = form["Descripcion"];
-            requisition.RequisitionDate = DateTime.Parse(form["FechaRequisicion"]);
-            requisition.DeliveryDate = DateTime.Parse(form["FechaEntrega"]);
-            requisition.Commentaries = form["Comentarios"];
-            requisition.PriorityId = Convert.ToInt32(form["PrioridadId"]);
-            requisition.Active = Convert.ToBoolean(form["Activo"]);
-
+            
             requisitionRepository.Update(requisition);
 
             return RedirectToAction("Details", new { requisition.Id });

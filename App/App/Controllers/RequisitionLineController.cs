@@ -78,8 +78,8 @@ namespace App.Controllers
         [HttpPost]
         public ActionResult Delete(FormCollection form)
         {
-            int LineId = Convert.ToInt32(form["LineaId"]);
-            int RequisitionId = Convert.ToInt32(form["ReqId"]);
+            int LineId = Convert.ToInt32(form["LineId"]);
+            int RequisitionId = Convert.ToInt32(form["RequisitionId"]);
 
             requisitionLineRepository.Delete(LineId);
 

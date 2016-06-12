@@ -1,23 +1,23 @@
-﻿@model App.ViewModels.FormularioRequisicion
+﻿@model App.ViewModels.RequisitionForm
 
 <div id="DeleteLineModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content" style="transform:translate(0px,50px);">
             @using (Html.BeginForm("Delete", "RequisitionLine", FormMethod.Post))
             {
-                <input type="hidden" value="" class="lineaId" name="LineaId" readonly />
-                <input type="hidden" value="" class="reqId" name="ReqId" readonly />
+                <input type="hidden" value="" class="lineId" name="LineId" readonly />
+                <input type="hidden" value="" class="reqId" name="RequisitionId" readonly />
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dissmiss="modal">&times;</button>
-                    <h3 class="modal-title">Eliminar Linea</h3>
+                    <h3 class="modal-title">Delete Line</h3>
                 </div>
                 <div class="modal-body">
-                    <p>Esta seguro que desea eliminar esta requisicion?</p>
+                    <p>Are you sure that want to delete this line?</p>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary" value="Si, deseo eliminarla." />
-                    <button type="button" class="btn btn-default" data-dissmiss="modal">No, deseo conservarla.</button>
+                    <input type="submit" class="btn btn-primary" value="Yes, I want delete it" />
+                    <button type="button" class="btn btn-default" data-dissmiss="modal">No, I won't delete it</button>
                 </div>
             }
         </div>
