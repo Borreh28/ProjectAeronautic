@@ -48,27 +48,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contexto.cs" />
-    <Compile Include="Mapeo\DepartamentoMapper.cs" />
-    <Compile Include="Mapeo\EstatusMapper.cs" />
-    <Compile Include="Mapeo\PeriodoMapper.cs" />
-    <Compile Include="Mapeo\PrioridadMapper.cs" />
-    <Compile Include="Mapeo\ProveedorMapper.cs" />
-    <Compile Include="Mapeo\RequisicionMapper.cs" />
-    <Compile Include="Mapeo\RequisicionLineaMapper.cs" />
-    <Compile Include="Migrations\201606090232264_Init.cs" />
-    <Compile Include="Migrations\201606090232264_Init.Designer.cs">
-      <DependentUpon>201606090232264_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="Mapping\DepartmentMapper.cs" />
+    <Compile Include="Mapping\ProductMapper.cs" />
+    <Compile Include="Mapping\StatusMapper.cs" />
+    <Compile Include="Mapping\PeriodMapper.cs" />
+    <Compile Include="Mapping\PriorityMapper.cs" />
+    <Compile Include="Mapping\SupplierMapper.cs" />
+    <Compile Include="Mapping\RequisitionMapper.cs" />
+    <Compile Include="Mapping\RequisitionLineMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositorio\DepartamentoRepository.cs" />
-    <Compile Include="Repositorio\EstatusRepository.cs" />
-    <Compile Include="Repositorio\PeriodoRepository.cs" />
-    <Compile Include="Repositorio\PrioridadRepository.cs" />
-    <Compile Include="Repositorio\ProveedorRepository.cs" />
-    <Compile Include="Repositorio\RequisicionLineaRepository.cs" />
-    <Compile Include="Repositorio\RequisicionRepository.cs" />
+    <Compile Include="Repositories\DepartmentRepository.cs" />
+    <Compile Include="Repositories\StatusRepository.cs" />
+    <Compile Include="Repositories\PeriodRepository.cs" />
+    <Compile Include="Repositories\PriorityRepository.cs" />
+    <Compile Include="Repositories\SupplierRepository.cs" />
+    <Compile Include="Repositories\RequisitionLineRepository.cs" />
+    <Compile Include="Repositories\RequisitionRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\APP.Entities\App.Entities.csproj">
@@ -79,11 +75,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606090232264_Init.resx">
-      <DependentUpon>201606090232264_Init.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -15,13 +15,13 @@ namespace App.Controllers
         RequisitionLine ReqLin;
         FormularioRequisicion FormReq;
 
-        RequisicionRepository ReqRepo;
-        RequisicionLineaRepository ReqLinRepo;
-        ProveedorRepository ProvRepo;
-        DepartamentoRepository DeptoRepo;
-        EstatusRepository EstRepo;
-        PeriodoRepository PerRepo;
-        PrioridadRepository PrioRepo;
+        RequisitionRepository ReqRepo;
+        RequisitionLineRepository ReqLinRepo;
+        SupplierRepository ProvRepo;
+        DepartmentRepository DeptoRepo;
+        StatusRepository EstRepo;
+        PeriodRepository PerRepo;
+        PriorityRepository PrioRepo;
 
         public RequisitionLineController()
         {
@@ -29,13 +29,13 @@ namespace App.Controllers
             ReqLin = new RequisitionLine();
             FormReq = new FormularioRequisicion();
 
-            ReqRepo = new RequisicionRepository();
-            ReqLinRepo = new RequisicionLineaRepository();
-            ProvRepo = new ProveedorRepository();
-            DeptoRepo = new DepartamentoRepository();
-            EstRepo = new EstatusRepository();
-            PerRepo = new PeriodoRepository();
-            PrioRepo = new PrioridadRepository();
+            ReqRepo = new RequisitionRepository();
+            ReqLinRepo = new RequisitionLineRepository();
+            ProvRepo = new SupplierRepository();
+            DeptoRepo = new DepartmentRepository();
+            EstRepo = new StatusRepository();
+            PerRepo = new PeriodRepository();
+            PrioRepo = new PriorityRepository();
         }
 
         [HttpPost]

@@ -18,7 +18,7 @@ namespace App.Entities
         public int UpdatedBy { get; set; }
         public DateTime Updated { get; set; }
 
-        public virtual Product Product { get; set; }
         public virtual Requisition Requisition { get; set; }
+        public virtual Product Product { get; set; }
     }
 }
