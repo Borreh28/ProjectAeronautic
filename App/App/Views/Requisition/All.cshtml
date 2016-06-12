@@ -1,4 +1,4 @@
-﻿@model IEnumerable<App.Entities.Requisicion>
+﻿@model IEnumerable<App.Entities.Requisition>
 
 @{
     ViewBag.Title = "All";
@@ -8,37 +8,37 @@
 <h1></h1>
 <div class="row">
     <div class="container">
-        <a href="@Url.Action("Add", "Requisition")" class="btn-sm btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Crear nueva requisicion</a>
+        <a href="@Url.Action("Add", "Requisition")" class="btn-sm btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Add new requisition</a>
     </div>
 </div>
 <table style="margin-top:20px;" class="table table-striped">
     <tr>
         <th>
-            No Requisicion
+            No. Requisition
         </th>
         <th>
-            Departamento
+            Department
         </th>
         <th>
-            Proveedor
+            Supplier
         </th>
         <th>
-            Estatus
+            Status
         </th>
         <th>
-            Lineas
+            Lines
         </th>
         <th>
             Total
         </th>
         <th>
-            Fecha Requisicion
+            Requisition Date
         </th>
         <th>
-            Fecha Entrega
+            Delivery Date
         </th>
         <th>
-            Prioridad
+            Priority
         </th>
         <th></th>
     </tr>
@@ -50,28 +50,28 @@
             @Html.DisplayFor(modelItem => item.Id)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Departamento.Nombre)
+            @Html.DisplayFor(modelItem => item.Department.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Proveedor.Nombre)
+            @Html.DisplayFor(modelItem => item.Supplier.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Estatus.Nombre)
+            @Html.DisplayFor(modelItem => item.Status.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TotalLineas)
+            @Html.DisplayFor(modelItem => item.TotalLines)
         </td>
         <td>
-            $ @Html.DisplayFor(modelItem => item.GranTotal)
+            $ @Html.DisplayFor(modelItem => item.Total)
         </td>
         <td>
-            @item.FechaRequisicion.ToShortDateString()
+            @item.RequisitionDate.ToShortDateString()
         </td>
         <td>
-            @item.FechaEntrega.ToShortDateString()
+            @item.DeliveryDate.ToShortDateString()
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PrioridadId)
+            @Html.DisplayFor(modelItem => item.Priority.Name)
         </td>
         <td>
             <a href="@Url.Action("Details", "Requisition", new { id = item.Id })"><span class="glyphicon glyphicon-list-alt"></span></a>

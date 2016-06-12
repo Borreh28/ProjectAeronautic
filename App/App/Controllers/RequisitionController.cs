@@ -1,195 +1,181 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using App.ViewModels;
-using App.DAL;
+﻿using App.DAL;
 using App.Entities;
+using App.ViewModels;
+using System;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace App.Controllers
 {
     public class RequisitionController : Controller
     {
-        Requisition Req;
-        RequisitionLine ReqLin;
-        FormularioRequisicion FormReq;
+        Requisition requisition;
+        RequisitionLine requisitionLine;
+        RequisitionForm requisitionForm;
 
-        RequisitionRepository ReqRepo;
-        RequisitionLineRepository ReqLinRepo;
-        SupplierRepository ProvRepo;
-        DepartmentRepository DeptoRepo;
-        StatusRepository EstRepo;
-        PeriodRepository PerRepo;
-        PriorityRepository PrioRepo;
+        RequisitionRepository requisitionRepository;
+        RequisitionLineRepository requisitionLineRepository;
+        SupplierRepository supplierRepository;
+        DepartmentRepository departmentRepository;
+        StatusRepository statusRepository;
+        PeriodRepository periodRepository;
+        PriorityRepository priorityRepository;
 
         public RequisitionController()
         {
-            Req = new Requisition();
-            ReqLin = new RequisitionLine();
-            FormReq = new FormularioRequisicion();
+            requisition = new Requisition();
+            requisitionLine = new RequisitionLine();
+            requisitionForm = new RequisitionForm();
 
-            ReqRepo = new RequisitionRepository();
-            ReqLinRepo = new RequisitionLineRepository();
-            ProvRepo = new SupplierRepository();
-            DeptoRepo = new DepartmentRepository();
-            EstRepo = new StatusRepository();
-            PerRepo = new PeriodRepository();
-            PrioRepo = new PriorityRepository();
+            requisitionRepository = new RequisitionRepository();
+            requisitionLineRepository = new RequisitionLineRepository();
+            supplierRepository = new SupplierRepository();
+            departmentRepository = new DepartmentRepository();
+            statusRepository = new StatusRepository();
+            periodRepository = new PeriodRepository();
+            priorityRepository = new PriorityRepository();
         }
 
         public ActionResult All()
         {
-            var model = ReqRepo.GetAllActive();
+            var model = requisitionRepository.GetAllActive();
 
             return View(model);
         }
 
         public ActionResult Details(int id)
         {
-            FormReq.Requsiciones = ReqRepo.GetById(id);
-            FormReq.Lineas = ReqLinRepo.GetByIdRequisicion(id);
+            requisitionForm.Requisitions = requisitionRepository.GetById(id);
+            requisitionForm.Lines = requisitionLineRepository.GetByRequisitionId(id);
 
-            return View(FormReq);
+            return View(requisitionForm);
         }
 
         public ActionResult Add()
         {
-            FormReq.Proveedores = ProvRepo.GetAll();
-            FormReq.Departamentos = DeptoRepo.GetAll();
-            FormReq.Estatus = EstRepo.GetAll();
-            FormReq.Periodos = PerRepo.GetAll();
-            FormReq.Prioridades = PrioRepo.GetAll();
+            requisitionForm.Suppliers = supplierRepository.GetAll();
+            requisitionForm.Departments = departmentRepository.GetAll();
+            requisitionForm.Status = statusRepository.GetAll();
+            requisitionForm.Periods = periodRepository.GetAll();
+            requisitionForm.Priorities = priorityRepository.GetAll();
 
-            return View(FormReq);
+            return View(requisitionForm);
         }
 
         [HttpPost]
         public ActionResult Add(FormCollection form)
         {
-            string Departamento = form["Departamento"];
-            var Departamentos = FormReq.Departamentos;
-            Departamentos = DeptoRepo.GetByName(Departamento);
+            requisition.PeriodId = Convert.ToInt32(form["Period"]);
+            requisition.DepartmentId = Convert.ToInt32(form["Department"]);
+            requisition.SupplierId = Convert.ToInt32(form["Supplier"]);
+            requisition.StatusId = 1;
+            requisition.PriorityId = Convert.ToInt32(form["Priority"]);
+            requisition.Active = true;
+            requisition.TotalLines = 0;
+            requisition.SubTotal = 0;
+            requisition.Interest = 0;
+            requisition.Total = 0;
+            requisition.RequisitionDate = DateTime.Parse(form["RequisitionDate"]);
+            requisition.DeliveryDate = DateTime.Parse(form["DeliveryDate"]);
+            requisition.Description = form["Description"];
+            requisition.Commentaries = form["Commentaries"];
+            requisition.CreatedBy = 0;
+            requisition.Created = DateTime.Now;
+            requisition.UpdatedBy = 0;
+            requisition.Updated = DateTime.Now;
 
-            string Proveedor = form["Proveedor"];
-            var Proveedores = FormReq.Proveedores;
-            Proveedores = ProvRepo.GetByName(Proveedor);
+            requisitionRepository.Add(requisition);
 
-            string Periodo = form["Periodo"];
-            var Periodos = FormReq.Periodos;
-            Periodos = PerRepo.GetByName(Periodo);
-            
-            Req.PeriodId = Periodos.FirstOrDefault().Id;
-            Req.DepartmentId = Departamentos.FirstOrDefault().Id;
-            Req.SupplierId = Proveedores.FirstOrDefault().Id;
-            Req.StatusId = 1;
-            Req.TotalLines = 0;
-            Req.SubTotal = 0;
-            Req.Interest = 0;
-            Req.Total = 0;
-            Req.CreatedBy = 0;
-            Req.Created = DateTime.Now;
-            Req.UpdatedBy = 0;
-            Req.Updated = DateTime.Now;
-            Req.Description = form["Descripcion"];
-            Req.RequisitionDate = DateTime.Parse(form["FechaRequisicion"]);
-            Req.DeliveryDate = DateTime.Parse(form["FechaEntrega"]);
-            Req.Commentaries = form["Comentarios"];
-            Req.PriorityId = Convert.ToInt32(form["Prioridad"]);
-            Req.Active = true;
-
-            ReqRepo.Add(Req);
-
-            return RedirectToAction("Edit", new { id = Req.Id });
+            return RedirectToAction("Edit", new { id = requisition.Id });
         }
 
         public ActionResult Edit(int id)
         {
-            FormReq.Requsiciones = ReqRepo.GetById(id);
-            FormReq.Lineas = ReqLinRepo.GetByIdRequisicion(id);
-            FormReq.Proveedores = ProvRepo.GetAll();
-            FormReq.Departamentos = DeptoRepo.GetAll();
+            requisitionForm.Requisitions = requisitionRepository.GetById(id);
+            requisitionForm.Lines = requisitionLineRepository.GetByRequisitionId(id);
+            requisitionForm.Suppliers = supplierRepository.GetAll();
+            requisitionForm.Departments = departmentRepository.GetAll();
 
-            return View(FormReq);
+            return View(requisitionForm);
         }
 
         [HttpPost]
         public ActionResult Edit(FormCollection form)
         {
-            string Depto = form["Departamento"];
-            var Deptos = FormReq.Departamentos;
-            Deptos = DeptoRepo.GetByName(Depto);
+            string DepartmentName = form["Departamento"];
+            var Departments = requisitionForm.Departments;
+            Departments = departmentRepository.GetByName(DepartmentName);
 
-            string Prvdr = form["Proveedor"];
-            var Prvdrs = FormReq.Proveedores;
-            Prvdrs = ProvRepo.GetByName(Prvdr);
+            string SupplierName = form["Proveedor"];
+            var Suppliers = requisitionForm.Suppliers;
+            Suppliers = supplierRepository.GetByName(SupplierName);
 
-            Req.Id = Int32.Parse(form["ReqId"]);
-            Req.PeriodId = Int32.Parse(form["PeriodoId"]);
-            Req.DepartmentId = Deptos.FirstOrDefault().Id;
-            Req.SupplierId = Prvdrs.FirstOrDefault().Id;
-            Req.StatusId = Int32.Parse(form["EstatusId"]);
-            Req.TotalLines = Int32.Parse(form["TotalLineas"]);
-            Req.SubTotal = Decimal.Parse(form["SubTotal"]);
-            Req.Interest = 0;
-            Req.Total = Decimal.Parse(form["GranTotal"]);
-            Req.CreatedBy = Int32.Parse(form["CreadoPor"]);
-            Req.Created = DateTime.Parse(form["Creado"]);
-            Req.UpdatedBy = Int32.Parse(form["ActualizadoPor"]);
-            Req.Updated = DateTime.Now;
-            Req.Description = form["Descripcion"];
-            Req.RequisitionDate = DateTime.Parse(form["FechaRequisicion"]);
-            Req.DeliveryDate = DateTime.Parse(form["FechaEntrega"]);
-            Req.Commentaries = form["Comentarios"];
-            Req.PriorityId = Convert.ToInt32(form["PrioridadId"]);
-            Req.Active = Convert.ToBoolean(form["Activo"]);
+            requisition.Id = Int32.Parse(form["ReqId"]);
+            requisition.PeriodId = Int32.Parse(form["PeriodoId"]);
+            requisition.DepartmentId = Departments.FirstOrDefault().Id;
+            requisition.SupplierId = Suppliers.FirstOrDefault().Id;
+            requisition.StatusId = Int32.Parse(form["EstatusId"]);
+            requisition.TotalLines = Int32.Parse(form["TotalLineas"]);
+            requisition.SubTotal = Decimal.Parse(form["SubTotal"]);
+            requisition.Interest = 0;
+            requisition.Total = Decimal.Parse(form["GranTotal"]);
+            requisition.CreatedBy = Int32.Parse(form["CreadoPor"]);
+            requisition.Created = DateTime.Parse(form["Creado"]);
+            requisition.UpdatedBy = Int32.Parse(form["ActualizadoPor"]);
+            requisition.Updated = DateTime.Now;
+            requisition.Description = form["Descripcion"];
+            requisition.RequisitionDate = DateTime.Parse(form["FechaRequisicion"]);
+            requisition.DeliveryDate = DateTime.Parse(form["FechaEntrega"]);
+            requisition.Commentaries = form["Comentarios"];
+            requisition.PriorityId = Convert.ToInt32(form["PrioridadId"]);
+            requisition.Active = Convert.ToBoolean(form["Activo"]);
 
-            ReqRepo.Update(Req);
+            requisitionRepository.Update(requisition);
 
-            return RedirectToAction("Details", new { Req.Id });
+            return RedirectToAction("Details", new { requisition.Id });
         }
 
         [HttpPost]
         public ActionResult Delete(FormCollection form)
         {
             var check = form["Permanente"];
-            bool Permanente = false;
+            bool Permanent = false;
 
             if (check != "false")
             {
                 check = "true";
-                Permanente = Convert.ToBoolean(check);
+                Permanent = Convert.ToBoolean(check);
             }
 
-            if (Permanente)
+            if (Permanent)
             {
-                Req.Id = Int32.Parse(form["Id"]);
+                requisition.Id = Int32.Parse(form["Id"]);
 
-                ReqRepo.Delete(Req.Id);
+                requisitionRepository.Delete(requisition.Id);
             }
             else
             {
-                Req.Id = Int32.Parse(form["Id"]);
-                Req.PeriodId = Int32.Parse(form["PeriodoId"]);
-                Req.DepartmentId = Int32.Parse(form["DepartamentoId"]);
-                Req.SupplierId = Int32.Parse(form["ProveedorId"]);
-                Req.StatusId = Int32.Parse(form["EstatusId"]);
-                Req.TotalLines = Int32.Parse(form["TotalLineas"]);
-                Req.SubTotal = Decimal.Parse(form["SubTotal"]);
-                Req.Interest = Decimal.Parse(form["Interes"]);
-                Req.Total = Decimal.Parse(form["GranTotal"]);
-                Req.CreatedBy = Int32.Parse(form["CreadoPor"]);
-                Req.Created = DateTime.Parse(form["Creado"]);
-                Req.UpdatedBy = Int32.Parse(form["ActualizadoPor"]);
-                Req.Updated = DateTime.Parse(form["Actualizado"]);
-                Req.Description = form["Descripcion"];
-                Req.RequisitionDate = DateTime.Parse(form["FechaRequisicion"]);
-                Req.DeliveryDate = DateTime.Parse(form["FechaEntrega"]);
-                Req.Commentaries = form["Comentarios"];
-                Req.PriorityId = Convert.ToInt32(form["PrioridadId"]);
-                Req.Active = false;
+                requisition.Id = Int32.Parse(form["Id"]);
+                requisition.PeriodId = Int32.Parse(form["PeriodoId"]);
+                requisition.DepartmentId = Int32.Parse(form["DepartamentoId"]);
+                requisition.SupplierId = Int32.Parse(form["ProveedorId"]);
+                requisition.StatusId = Int32.Parse(form["EstatusId"]);
+                requisition.TotalLines = Int32.Parse(form["TotalLineas"]);
+                requisition.SubTotal = Decimal.Parse(form["SubTotal"]);
+                requisition.Interest = Decimal.Parse(form["Interes"]);
+                requisition.Total = Decimal.Parse(form["GranTotal"]);
+                requisition.CreatedBy = Int32.Parse(form["CreadoPor"]);
+                requisition.Created = DateTime.Parse(form["Creado"]);
+                requisition.UpdatedBy = Int32.Parse(form["ActualizadoPor"]);
+                requisition.Updated = DateTime.Parse(form["Actualizado"]);
+                requisition.Description = form["Descripcion"];
+                requisition.RequisitionDate = DateTime.Parse(form["FechaRequisicion"]);
+                requisition.DeliveryDate = DateTime.Parse(form["FechaEntrega"]);
+                requisition.Commentaries = form["Comentarios"];
+                requisition.PriorityId = Convert.ToInt32(form["PrioridadId"]);
+                requisition.Active = false;
 
-                ReqRepo.Update(Req);
+                requisitionRepository.Update(requisition);
             }
 
             return RedirectToAction("All");

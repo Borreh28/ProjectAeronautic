@@ -19,7 +19,7 @@ namespace App.DAL
             return context.Lines.ToList();
         }
 
-        public IEnumerable<RequisitionLine> GetByIdRequisicion(int id)
+        public IEnumerable<RequisitionLine> GetByRequisitionId(int id)
         {
             return context.Lines.Where(w => w.RequisitionId == id).ToList();
         }

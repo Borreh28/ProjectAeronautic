@@ -1,14 +1,14 @@
 ﻿$(".getRow").click(function (e) {
     e.preventDefault();
-    $(".lineaId").val(($(this).attr('getLineaId')));
+    $(".lineId").val(($(this).attr('getLineId')));
     $(".reqId").val(($(this).attr('getReqId')));
-    $(".linea").val(($(this).attr('getLinea')));
-    $(".parteId").val(($(this).attr('getParteId')));
-    $(".cantidad").val(($(this).attr('getCantidad')));
-    $(".precioVenta").val(($(this).attr('getPrecioVenta')));
-    $(".descripcion").val(($(this).attr('getDescripcion')));
-    $(".creadoPor").val(($(this).attr('getCreadoPor')));
-    $(".creado").val(($(this).attr('getCreado')));
-    $(".actualizadoPor").val(($(this).attr('getActualizadoPor')));
-    $(".actualizado").val(($(this).attr('getActualizado')));
+    $(".productId").val(($(this).attr('getProductId')));
+    $(".line").val(($(this).attr('getLine')));
+    $(".quantity").val(($(this).attr('getQuantity')));
+    $(".salePrice").val(($(this).attr('getSalePrice')));
+    $(".description").val(($(this).attr('getDescription')));
+    $(".createdBy").val(($(this).attr('getCreatedBy')));
+    $(".created").val(($(this).attr('getCreated')));
+    $(".updatedBy").val(($(this).attr('getUpdatedBy')));
+    $(".updated").val(($(this).attr('getUpdated')));
 });

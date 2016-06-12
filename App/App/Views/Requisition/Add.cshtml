@@ -1,4 +1,4 @@
-﻿@model App.ViewModels.FormularioRequisicion
+﻿@model App.ViewModels.RequisitionForm
 
 @{
     ViewBag.Title = "Add";
@@ -13,9 +13,9 @@
     }
 </style>
 
-<h1>Nueva Requisicion</h1>
+<h1>New Requisition</h1>
 <br />
-<p class="text-danger">Todos los campos son obligatorios*</p>
+<p class="text-danger">All fields are required*</p>
 <br />
 @using (Html.BeginForm("Add", "Requisition", FormMethod.Post))
 {
@@ -23,14 +23,14 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="col-md-4">
-                    <label>Periodo: </label>
+                    <label>Period: </label>
                 </div>
                 <div class="col-md-8">
                     <div class="selectContainer">
-                        <select style="width:100%;" name="Periodo">
-                            @foreach (var item in Model.Periodos)
+                        <select style="width:100%;" name="Period">
+                            @foreach (var item in Model.Periods)
                             {
-                                <option value="@Html.DisplayFor(modelItem => item.Nombre)">@Html.DisplayFor(modelItem => item.Nombre)</option>
+                                <option value="@Html.DisplayFor(modelItem => item.Id)">@Html.DisplayFor(modelItem => item.Name)</option>
                             }
                         </select>
                     </div>
@@ -38,39 +38,14 @@
             </div>
             <div class="col-md-6">
                 <div class="col-md-4">
-                    <label>Prioridad: </label>
+                    <label>Priority: </label>
                 </div>
                 <div class="col-md-8">
                     <div class="selectContainer">
-                        <select style="width:100%;" name="Prioridad">
-                            @foreach (var item in Model.Prioridades)
+                        <select style="width:100%;" name="Priority">
+                            @foreach (var item in Model.Priorities)
                             {
-                                <option value="@Html.DisplayFor(modelItem => item.Id)">@Html.DisplayFor(modelItem => item.Id)</option>
-                            }
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="col-md-4">
-                    <label>Fecha de Requisicion: </label>
-                </div>
-                <div class="col-md-8">
-                    <input type="date" style="width:100%;" value="@DateTime.Now.ToShortDateString()" name="FechaRequisicion" />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="col-md-4">
-                    <label>Departamento: </label>
-                </div>
-                <div class="col-md-8">
-                    <div class="selectContainer">
-                        <select style="width:100%;" name="Departamento">
-                            @foreach (var item in Model.Departamentos)
-                            {
-                                <option value="@Html.DisplayFor(modelItem => item.Nombre)">@Html.DisplayFor(modelItem => item.Id) - @Html.DisplayFor(modelItem => item.Nombre)</option>
+                                <option value="@Html.DisplayFor(modelItem => item.Id)">@Html.DisplayFor(modelItem => item.Name)</option>
                             }
                         </select>
                     </div>
@@ -80,22 +55,22 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="col-md-4">
-                    <label>Fecha de Entrega: </label>
+                    <label>Requisition Date: </label>
                 </div>
                 <div class="col-md-8">
-                    <input type="date" style="width:100%;" value="@DateTime.Now.ToShortDateString()" name="FechaEntrega" />
+                    <input type="date" style="width:100%;" value="@DateTime.Now.ToShortDateString()" name="RequisitionDate" />
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="col-md-4">
-                    <label>Proveedor: </label>
+                    <label>Department: </label>
                 </div>
                 <div class="col-md-8">
                     <div class="selectContainer">
-                        <select style="width:100%;" name="Proveedor">
-                            @foreach (var item in Model.Proveedores)
+                        <select style="width:100%;" name="Department">
+                            @foreach (var item in Model.Departments)
                             {
-                                <option value="@Html.DisplayFor(modelItem => item.Nombre)">@Html.DisplayFor(modelItem => item.Nombre)</option>
+                                <option value="@Html.DisplayFor(modelItem => item.Id)">@Html.DisplayFor(modelItem => item.Id) - @Html.DisplayFor(modelItem => item.Name)</option>
                             }
                         </select>
                     </div>
@@ -105,18 +80,43 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="col-md-4">
-                    <label>Descripcion:</label>
+                    <label>Delivery Date: </label>
                 </div>
                 <div class="col-md-8">
-                    @Html.TextArea("Descripcion", htmlAttributes: new { @style = "width:100%; height:80px;" })
+                    <input type="date" style="width:100%;" value="@DateTime.Now.ToShortDateString()" name="DeliveryDate" />
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="col-md-4">
-                    <label>Comentarios:</label>
+                    <label>Supplier: </label>
                 </div>
                 <div class="col-md-8">
-                    @Html.TextArea("Comentarios", htmlAttributes: new { @style = "width:100%; height:80px;" })
+                    <div class="selectContainer">
+                        <select style="width:100%;" name="Supplier">
+                            @foreach (var item in Model.Suppliers)
+                            {
+                                <option value="@Html.DisplayFor(modelItem => item.Id)">@Html.DisplayFor(modelItem => item.Name)</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-4">
+                    <label>Description:</label>
+                </div>
+                <div class="col-md-8">
+                    @Html.TextArea("Description", htmlAttributes: new { @style = "width:100%; height:80px;" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-4">
+                    <label>Commentaries:</label>
+                </div>
+                <div class="col-md-8">
+                    @Html.TextArea("Commentaries", htmlAttributes: new { @style = "width:100%; height:80px;" })
                 </div>
             </div>
         </div>
@@ -131,9 +131,9 @@
         <div class="col-md-4 pull-right">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Confirmar</button>
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Confirm</button>
             &nbsp;&nbsp;
-            <a href="@Url.Action("All", "Requisition")" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+            <a href="@Url.Action("All", "Requisition")" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
         </div>
     </div>
 }
