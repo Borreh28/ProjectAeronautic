@@ -1,10 +1,10 @@
-﻿@model App.ViewModels.FormularioRequisicion
+﻿@model App.ViewModels.RequisitionForm
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    int Numero = 0;
+    int Number = 0;
     decimal SubTotal = 0;
     decimal Total = 0;
 }
@@ -37,42 +37,42 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-2">
-                            <label>Creado por: </label>
+                            <label>Created By: </label>
                         </div>
                         <div class="col-md-2">
-                            <p>@Model.Requsiciones.FirstOrDefault().CreadoPor</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label>Fecha de Creacion: </label>
-                        </div>
-                        <div class="col-md-2">
-                            <p>@Model.Requsiciones.FirstOrDefault().Creado.ToShortDateString()</p>
+                            <p>@Model.Requisitions.FirstOrDefault().CreatedBy</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-2">
-                            <label>Departamento: </label>
+                            <label>Creation Date: </label>
                         </div>
                         <div class="col-md-2">
-                            <p>@Model.Requsiciones.FirstOrDefault().Departamento.Nombre</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label>Actualizado por: </label>
-                        </div>
-                        <div class="col-md-2">
-                            <p>@Model.Requsiciones.FirstOrDefault().ActualizadoPor</p>
+                            <p>@Model.Requisitions.FirstOrDefault().Created.ToShortDateString()</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-2">
-                            <label>Fecha de Actualizacion: </label>
+                            <label>Department: </label>
                         </div>
                         <div class="col-md-2">
-                            <p>@Model.Requsiciones.FirstOrDefault().Actualizado.ToShortDateString()</p>
+                            <p>@Model.Requisitions.FirstOrDefault().Department.Name</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Updated By: </label>
+                        </div>
+                        <div class="col-md-2">
+                            <p>@Model.Requisitions.FirstOrDefault().UpdatedBy</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Update Date: </label>
+                        </div>
+                        <div class="col-md-2">
+                            <p>@Model.Requisitions.FirstOrDefault().Updated.ToShortDateString()</p>
                         </div>
                     </div>
                 </div>
@@ -83,50 +83,50 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-2">
-                            <label>No. Requisicion: </label>
+                            <label>No. Requisition: </label>
                         </div>
                         <div class="col-md-2">
-                            <p>@Model.Requsiciones.FirstOrDefault().Id</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label>Proveedor: </label>
-                        </div>
-                        <div class="col-md-2">
-                            <p>@Model.Requsiciones.FirstOrDefault().Proveedor.Nombre</p>
+                            <p>@Model.Requisitions.FirstOrDefault().Id</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-2">
-                            <label>Fecha de Requisicion: </label>
+                            <label>Supplier: </label>
                         </div>
                         <div class="col-md-2">
-                            <p>@Model.Requsiciones.FirstOrDefault().FechaRequisicion.ToShortDateString()</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label>Estatus: </label>
-                        </div>
-                        <div class="col-md-2">
-                            <p>@Model.Requsiciones.FirstOrDefault().Estatus.Nombre</p>
+                            <p>@Model.Requisitions.FirstOrDefault().Supplier.Name</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-2">
-                            <label>Periodo: </label>
+                            <label>Requisition Date: </label>
                         </div>
                         <div class="col-md-2">
-                            <p>@Model.Requsiciones.FirstOrDefault().Periodo.Nombre</p>
+                            <p>@Model.Requisitions.FirstOrDefault().RequisitionDate.ToShortDateString()</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-2">
-                            <label>Total de Requisicion: </label>
+                            <label>Status: </label>
                         </div>
                         <div class="col-md-2">
-                            <p>$ @Math.Round(Model.Requsiciones.FirstOrDefault().GranTotal, 2)</p>
+                            <p>@Model.Requisitions.FirstOrDefault().Status.Name</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Period: </label>
+                        </div>
+                        <div class="col-md-2">
+                            <p>@Model.Requisitions.FirstOrDefault().Period.Name</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Total: </label>
+                        </div>
+                        <div class="col-md-2">
+                            <p>$ @Math.Round(Model.Requisitions.FirstOrDefault().Total, 2)</p>
                         </div>
                     </div>
                 </div>
@@ -140,13 +140,16 @@
                             #
                         </th>
                         <th>
-                            No. Linea
+                            No. Line
                         </th>
                         <th>
-                            Cantidad
+                            Product
                         </th>
                         <th>
-                            Precio Venta
+                            Quantity
+                        </th>
+                        <th>
+                            Sale Price
                         </th>
                         <th>
                             Subtotal
@@ -157,24 +160,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.Lineas)
+                    @foreach (var item in Model.Lines)
                     {
-                        Numero++;
-                        SubTotal = item.Cantidad * item.PrecioVenta;
-                        Total = SubTotal + (SubTotal * item.Requisicion.Interes);
+                        Number++;
+                        SubTotal = item.Quantity * item.SalePrice;
+                        Total = SubTotal + (SubTotal * item.Requisition.Interest);
 
                         <tr>
                             <td>
-                                @Numero
+                                @Number
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Id)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Cantidad)
+                                @Html.DisplayFor(modelItem => item.Product.Name)
                             </td>
                             <td>
-                                $ @Html.DisplayFor(modelItem => item.PrecioVenta)
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            </td>
+                            <td>
+                                $ @Html.DisplayFor(modelItem => item.SalePrice)
                             </td>
                             <td>
                                 $ @Math.Round(SubTotal, 2)
@@ -277,9 +283,9 @@
             <div class="col-md-9"></div>
             <div class="col-md-3 pull-right">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="@Url.Action("Edit", "Requisition", new { id = Model.Requsiciones.FirstOrDefault().Id})" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+                <a href="@Url.Action("Edit", "Requisition", new { id = Model.Requisitions.FirstOrDefault().Id})" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
                 &nbsp;&nbsp;
-                <a href="#Delete" class="btn btn-primary" data-toggle="modal" data-target="#DeleteReqModal"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+                <a href="#Delete" class="btn btn-primary" data-toggle="modal" data-target="#DeleteReqModal"><span class="glyphicon glyphicon-trash"></span> Delete</a>
             </div>
         </div>
     </div>

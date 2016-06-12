@@ -1,42 +1,41 @@
-﻿@model App.ViewModels.FormularioRequisicion
+﻿@model App.ViewModels.RequisitionForm
 
 <div id="DeleteReqModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content" style="transform:translate(0px,50px);">
             @using (Html.BeginForm("Delete", "Requisition", FormMethod.Post))
             {
-                @Html.Hidden("Id", Model.Requsiciones.FirstOrDefault().Id)
-                @Html.Hidden("PeriodoId", Model.Requsiciones.FirstOrDefault().PeriodoId)
-                @Html.Hidden("DepartamentoId", Model.Requsiciones.FirstOrDefault().DepartamentoId)
-                @Html.Hidden("ProveedorId", Model.Requsiciones.FirstOrDefault().ProveedorId)
-                @Html.Hidden("MonedaId", Model.Requsiciones.FirstOrDefault().MonedaId)
-                @Html.Hidden("EstatusId", Model.Requsiciones.FirstOrDefault().EstatusId)
-                @Html.Hidden("TotalLineas", Model.Requsiciones.FirstOrDefault().TotalLineas)
-                @Html.Hidden("SubTotal", Model.Requsiciones.FirstOrDefault().SubTotal)
-                @Html.Hidden("Interes", Model.Requsiciones.FirstOrDefault().Interes)
-                @Html.Hidden("GranTotal", Model.Requsiciones.FirstOrDefault().GranTotal)
-                @Html.Hidden("CreadoPor", Model.Requsiciones.FirstOrDefault().CreadoPor)
-                @Html.Hidden("Creado", Model.Requsiciones.FirstOrDefault().Creado)
-                @Html.Hidden("ActualizadoPor", Model.Requsiciones.FirstOrDefault().ActualizadoPor)
-                @Html.Hidden("Actualizado", Model.Requsiciones.FirstOrDefault().Actualizado)
-                @Html.Hidden("Descripcion", Model.Requsiciones.FirstOrDefault().Descripcion)
-                @Html.Hidden("FechaRequisicion", Model.Requsiciones.FirstOrDefault().FechaRequisicion)
-                @Html.Hidden("FechaEntrega", Model.Requsiciones.FirstOrDefault().FechaEntrega)
-                @Html.Hidden("Comentarios", Model.Requsiciones.FirstOrDefault().Comentarios)
-                @Html.Hidden("PrioridadId", Model.Requsiciones.FirstOrDefault().PrioridadId)
+                @Html.Hidden("RequisitionId", Model.Requisitions.FirstOrDefault().Id)
+                @Html.Hidden("PeriodId", Model.Requisitions.FirstOrDefault().PeriodId)
+                @Html.Hidden("DepartmentId", Model.Requisitions.FirstOrDefault().DepartmentId)
+                @Html.Hidden("SupplierId", Model.Requisitions.FirstOrDefault().SupplierId)
+                @Html.Hidden("StatusId", Model.Requisitions.FirstOrDefault().StatusId)
+                @Html.Hidden("PriorityId", Model.Requisitions.FirstOrDefault().PriorityId)
+                @Html.Hidden("TotalLines", Model.Requisitions.FirstOrDefault().TotalLines)
+                @Html.Hidden("SubTotal", Model.Requisitions.FirstOrDefault().SubTotal)
+                @Html.Hidden("Interest", Model.Requisitions.FirstOrDefault().Interest)
+                @Html.Hidden("Total", Model.Requisitions.FirstOrDefault().Total)
+                @Html.Hidden("RequisitionDate", Model.Requisitions.FirstOrDefault().RequisitionDate)
+                @Html.Hidden("DeliveryDate", Model.Requisitions.FirstOrDefault().DeliveryDate)
+                @Html.Hidden("Description", Model.Requisitions.FirstOrDefault().Description)
+                @Html.Hidden("Commentaries", Model.Requisitions.FirstOrDefault().Commentaries)
+                @Html.Hidden("CreatedBy", Model.Requisitions.FirstOrDefault().CreatedBy)
+                @Html.Hidden("Created", Model.Requisitions.FirstOrDefault().Created)
+                @Html.Hidden("UpdatedBy", Model.Requisitions.FirstOrDefault().UpdatedBy)
+                @Html.Hidden("Updated", Model.Requisitions.FirstOrDefault().Updated)
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dissmiss="modal">&times;</button>
-                    <h3 class="modal-title">Eliminar Requisicion</h3>
+                    <h3 class="modal-title">Delete Requisition</h3>
                 </div>
                 <div class="modal-body">
-                    <p>Esta seguro que desea eliminar esta requisicion?</p>
+                    <p>Are you sure that want to delete this requisition?</p>
                     <br />
-                    <p>@Html.CheckBox("Permanente", false) Eliminar de manera permanente.</p>
+                    <p>@Html.CheckBox("Permanent", false) Delete permanently.</p>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary" value="Si, deseo eliminarla." />
-                    <button type="button" class="btn btn-default" data-dissmiss="modal">No, deseo conservarla.</button>
+                    <input type="submit" class="btn btn-primary" value="Yes, I want delete it" />
+                    <button type="button" class="btn btn-default" data-dissmiss="modal">No, I won't delete it</button>
                 </div>
             }
         </div>

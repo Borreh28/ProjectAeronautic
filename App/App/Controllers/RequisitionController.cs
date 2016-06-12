@@ -138,42 +138,42 @@ namespace App.Controllers
         [HttpPost]
         public ActionResult Delete(FormCollection form)
         {
-            var check = form["Permanente"];
+            var Check = form["Permanent"];
             bool Permanent = false;
 
-            if (check != "false")
+            if (Check != "false")
             {
-                check = "true";
-                Permanent = Convert.ToBoolean(check);
+                Check = "true";
+                Permanent = Convert.ToBoolean(Check);
             }
 
             if (Permanent)
             {
-                requisition.Id = Int32.Parse(form["Id"]);
+                requisition.Id = Int32.Parse(form["RequisitionId"]);
 
                 requisitionRepository.Delete(requisition.Id);
             }
             else
             {
-                requisition.Id = Int32.Parse(form["Id"]);
-                requisition.PeriodId = Int32.Parse(form["PeriodoId"]);
-                requisition.DepartmentId = Int32.Parse(form["DepartamentoId"]);
-                requisition.SupplierId = Int32.Parse(form["ProveedorId"]);
-                requisition.StatusId = Int32.Parse(form["EstatusId"]);
-                requisition.TotalLines = Int32.Parse(form["TotalLineas"]);
-                requisition.SubTotal = Decimal.Parse(form["SubTotal"]);
-                requisition.Interest = Decimal.Parse(form["Interes"]);
-                requisition.Total = Decimal.Parse(form["GranTotal"]);
-                requisition.CreatedBy = Int32.Parse(form["CreadoPor"]);
-                requisition.Created = DateTime.Parse(form["Creado"]);
-                requisition.UpdatedBy = Int32.Parse(form["ActualizadoPor"]);
-                requisition.Updated = DateTime.Parse(form["Actualizado"]);
-                requisition.Description = form["Descripcion"];
-                requisition.RequisitionDate = DateTime.Parse(form["FechaRequisicion"]);
-                requisition.DeliveryDate = DateTime.Parse(form["FechaEntrega"]);
-                requisition.Commentaries = form["Comentarios"];
-                requisition.PriorityId = Convert.ToInt32(form["PrioridadId"]);
+                requisition.Id = Int32.Parse(form["RequisitionId"]);
+                requisition.PeriodId = Int32.Parse(form["PeriodId"]);
+                requisition.DepartmentId = Int32.Parse(form["DepartmentId"]);
+                requisition.SupplierId = Int32.Parse(form["SupplierId"]);
+                requisition.StatusId = Int32.Parse(form["StatusId"]);
+                requisition.PriorityId = Convert.ToInt32(form["PriorityId"]);
                 requisition.Active = false;
+                requisition.TotalLines = Int32.Parse(form["TotalLines"]);
+                requisition.SubTotal = Decimal.Parse(form["SubTotal"]);
+                requisition.Interest = Decimal.Parse(form["Interest"]);
+                requisition.Total = Decimal.Parse(form["Total"]);
+                requisition.RequisitionDate = DateTime.Parse(form["RequisitionDate"]);
+                requisition.DeliveryDate = DateTime.Parse(form["DeliveryDate"]);
+                requisition.Description = form["Description"];
+                requisition.Commentaries = form["Commentaries"];
+                requisition.CreatedBy = Int32.Parse(form["CreatedBy"]);
+                requisition.Created = DateTime.Parse(form["Created"]);
+                requisition.UpdatedBy = Int32.Parse(form["UpdatedBy"]);
+                requisition.Updated = DateTime.Parse(form["Updated"]);
 
                 requisitionRepository.Update(requisition);
             }
