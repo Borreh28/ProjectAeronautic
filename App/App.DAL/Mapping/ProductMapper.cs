@@ -32,7 +32,8 @@ namespace App.DAL.Mapping
             modelBuilder.Entity<Product>()
                 .HasRequired(product => product.Supplier)
                 .WithMany(supplier => supplier.Products)
-                .HasForeignKey(product => product.SupplierId);
+                .HasForeignKey(product => product.SupplierId)
+                .WillCascadeOnDelete(false);
         }
     }
 }

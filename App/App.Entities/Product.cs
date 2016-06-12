@@ -19,11 +19,11 @@ namespace App.Entities
         public decimal UnitPrice { get; set; }
         public decimal CostPrice { get; set; }
         public decimal BudgetPrice { get; set; }
-        public int UnitPerPack { get; set; }
+        public short UnitPerPack { get; set; }
         public string UM { get; set; }
-        public int UnitInStock { get; set; }
-        public int UnitOnOrder { get; set; }
-        public int ReOrderLevel { get; set; }
+        public short UnitInStock { get; set; }
+        public short UnitOnOrder { get; set; }
+        public short ReOrderLevel { get; set; }
         public bool Discontinued { get; set; }
         public int CreatedBy { get; set; }
         public DateTime Created { get; set; }

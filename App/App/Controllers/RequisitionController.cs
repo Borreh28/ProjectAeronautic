@@ -82,7 +82,6 @@ namespace App.Controllers
             Req.PeriodId = Periodos.FirstOrDefault().Id;
             Req.DepartmentId = Departamentos.FirstOrDefault().Id;
             Req.SupplierId = Proveedores.FirstOrDefault().Id;
-            Req.MonedaId = 0;
             Req.StatusId = 1;
             Req.TotalLines = 0;
             Req.SubTotal = 0;
@@ -96,7 +95,7 @@ namespace App.Controllers
             Req.RequisitionDate = DateTime.Parse(form["FechaRequisicion"]);
             Req.DeliveryDate = DateTime.Parse(form["FechaEntrega"]);
             Req.Commentaries = form["Comentarios"];
-            Req.PriorityId = form["Prioridad"];
+            Req.PriorityId = Convert.ToInt32(form["Prioridad"]);
             Req.Active = true;
 
             ReqRepo.Add(Req);
@@ -129,7 +128,6 @@ namespace App.Controllers
             Req.PeriodId = Int32.Parse(form["PeriodoId"]);
             Req.DepartmentId = Deptos.FirstOrDefault().Id;
             Req.SupplierId = Prvdrs.FirstOrDefault().Id;
-            Req.MonedaId = Int32.Parse(form["MonedaId"]);
             Req.StatusId = Int32.Parse(form["EstatusId"]);
             Req.TotalLines = Int32.Parse(form["TotalLineas"]);
             Req.SubTotal = Decimal.Parse(form["SubTotal"]);
@@ -143,7 +141,7 @@ namespace App.Controllers
             Req.RequisitionDate = DateTime.Parse(form["FechaRequisicion"]);
             Req.DeliveryDate = DateTime.Parse(form["FechaEntrega"]);
             Req.Commentaries = form["Comentarios"];
-            Req.PriorityId = form["PrioridadId"];
+            Req.PriorityId = Convert.ToInt32(form["PrioridadId"]);
             Req.Active = Convert.ToBoolean(form["Activo"]);
 
             ReqRepo.Update(Req);
@@ -175,7 +173,6 @@ namespace App.Controllers
                 Req.PeriodId = Int32.Parse(form["PeriodoId"]);
                 Req.DepartmentId = Int32.Parse(form["DepartamentoId"]);
                 Req.SupplierId = Int32.Parse(form["ProveedorId"]);
-                Req.MonedaId = Int32.Parse(form["MonedaId"]);
                 Req.StatusId = Int32.Parse(form["EstatusId"]);
                 Req.TotalLines = Int32.Parse(form["TotalLineas"]);
                 Req.SubTotal = Decimal.Parse(form["SubTotal"]);
@@ -189,7 +186,7 @@ namespace App.Controllers
                 Req.RequisitionDate = DateTime.Parse(form["FechaRequisicion"]);
                 Req.DeliveryDate = DateTime.Parse(form["FechaEntrega"]);
                 Req.Commentaries = form["Comentarios"];
-                Req.PriorityId = form["PrioridadId"];
+                Req.PriorityId = Convert.ToInt32(form["PrioridadId"]);
                 Req.Active = false;
 
                 ReqRepo.Update(Req);
