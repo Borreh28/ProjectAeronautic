@@ -18,3 +18,9 @@ $('.getValue').on('change', function (e) {
     $('.costPrice').val($('.getCostPrice option:selected').val());
     $('.product').val($('.getProductName option:selected').text());
 });
+
+$('.getEditValue').on('change', function (e) {
+    e.preventDefault();
+    $('.editCostPrice').val($('.getEditCostPrice option:selected').val());
+    $('.editProduct').val($('.getEditProductName option:selected').text());
+});

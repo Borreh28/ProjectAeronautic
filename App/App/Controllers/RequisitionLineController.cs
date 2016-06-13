@@ -62,15 +62,15 @@ namespace App.Controllers
         [HttpPost]
         public ActionResult Edit(FormCollection form)
         {
-            requisitionLine.Id = Convert.ToInt32(form["LineaId"]);
-            requisitionLine.RequisitionId = Convert.ToInt32(form["ReqId"]);
-            requisitionLine.Line = Convert.ToInt32(form["Linea"]);
-            requisitionLine.ProductId = Convert.ToInt32(form["ParteId"]);
-            requisitionLine.Quantity = Convert.ToInt32(form["Cantidad"]);
-            requisitionLine.SalePrice = Convert.ToDecimal(form["Precio"]);
-            requisitionLine.Description = form["Descripcion"];
-            requisitionLine.CreatedBy = Convert.ToInt32(form["CreadoPor"]);
-            requisitionLine.Created = Convert.ToDateTime(form["Creado"]);
+            requisitionLine.Id = Convert.ToInt32(form["LineId"]);
+            requisitionLine.RequisitionId = Convert.ToInt32(form["RequisitionId"]);
+            requisitionLine.Line = Convert.ToInt32(form["Line"]);
+            requisitionLine.ProductId = Convert.ToInt32(form["ProductId"]);
+            requisitionLine.Quantity = Convert.ToInt32(form["Quantity"]);
+            requisitionLine.SalePrice = Convert.ToDecimal(form["Price"]);
+            requisitionLine.Description = form["Description"];
+            requisitionLine.CreatedBy = Convert.ToInt32(form["CreatedBy"]);
+            requisitionLine.Created = Convert.ToDateTime(form["Created"]);
             requisitionLine.UpdatedBy = 0;
             requisitionLine.Updated = DateTime.Now;
 

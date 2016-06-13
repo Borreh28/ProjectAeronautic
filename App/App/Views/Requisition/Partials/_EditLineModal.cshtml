@@ -5,75 +5,87 @@
         <div class="modal-content" style="transform:translate(0px,50px);">
             @using (Html.BeginForm("Edit", "RequisitionLine", FormMethod.Post))
             {
-                <input type="hidden" value="" class="reqId" name="ReqId" readonly />
-                <input type="hidden" value="" class="creadoPor" name="CreadoPor" readonly />
-                <input type="hidden" value="" class="creado" name="Creado" readonly />
+                <input type="hidden" value="" class="lineId" name="LineId" readonly />
+                <input type="hidden" value="" class="reqId" name="RequisitionId" readonly />
+                <input type="hidden" value="" class="line" name="Line" readonly />
+                <input type="hidden" value="" class="createdBy" name="CreatedBy" readonly />
+                <input type="hidden" value="" class="created" name="Created" readonly />
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dissmiss="modal">&times;</button>
-                    <h3 class="modal-title">Editar Linea</h3>
+                    <h3 class="modal-title">Edit Line</h3>
                 </div>
                 <div class="modal-body">
-                    <p class="text-danger">Todos los campos son obligatorios*</p>
+                    <p class="text-danger">All fields are required*</p>
                     <br />
                     <div class="row margin-height">
                         <div class="col-md-1"></div>
                         <div class="col-md-4">
-                            <label>No. Linea:</label>
+                            <label>No. Line:</label>
                         </div>
                         <div class="col-md-7">
-                            <input type="text" style="width:100%;" value="" class="lineaId" name="LineaId" readonly/>
+                            <input type="text" class="lineId" style="width:100%;" value="" disabled/>
                         </div>
                     </div>
                     <div class="row margin-height">
                         <div class="col-md-1"></div>
                         <div class="col-md-4">
-                            <label>Linea:</label>
+                            <label>Line:</label>
                         </div>
                         <div class="col-md-7">
-                            <input type="text" style="width:100%;" value="" class="linea" name="Linea" />
+                            <input type="text" class="line" style="width:100%;" value="" disabled />
                         </div>
                     </div>
                     <div class="row margin-height">
                         <div class="col-md-1"></div>
                         <div class="col-md-4">
-                            <label>No. Parte:</label>
+                            <label>Product:</label>
                         </div>
                         <div class="col-md-7">
-                            <input type="text" style="width:100%;" value="" class="parteId" name="ParteId" />
+                            <div class="selectContainer">
+                                <select class="getEditValue getEditCostPrice getEditProductName" style="width:100%;" name="Price">
+                                    <option value="@Model.Products.LastOrDefault().CostPrice">- Select a Product -</option>
+                                    @foreach (var item in Model.Products)
+                                    {
+                                        <option value="@Html.DisplayFor(modelItem => item.CostPrice)">@Html.DisplayFor(modelItem => item.Name)</option>
+                                    }
+                                </select>
+                            </div>
+                            <input type="hidden" class="productId" value="" name="ProductId" readonly />
+                            <input type="hidden" class="editProduct" value="" name="Product" readonly />
                         </div>
                     </div>
                     <div class="row margin-height">
                         <div class="col-md-1"></div>
                         <div class="col-md-4">
-                            <label>Cantidad:</label>
+                            <label>Quantity:</label>
                         </div>
                         <div class="col-md-7">
-                            <input type="text" style="width:100%;" value="" class="cantidad" name="Cantidad" />
+                            <input type="text" class="quantity" style="width:100%;" value="" name="Quantity" />
                         </div>
                     </div>
                     <div class="row margin-height">
                         <div class="col-md-1"></div>
                         <div class="col-md-4">
-                            <label>Precio de Venta:</label>
+                            <label>Price:</label>
                         </div>
                         <div class="col-md-7">
-                            <input type="text" style="width:100%;" value="" class="precioVenta" name="Precio" />
+                            <input type="text" class="editCostPrice" style="width:100%;" value="" readonly disabled />
                         </div>
                     </div>
                     <div class="row margin-height">
                         <div class="col-md-1"></div>
                         <div class="col-md-4">
-                            <label>Descripcion:</label>
+                            <label>Description:</label>
                         </div>
                         <div class="col-md-7">
-                            @Html.TextArea("Descripcion", htmlAttributes: new { @class = "input-text-lg descripcion" })
+                            @Html.TextArea("Description", htmlAttributes: new { @class = "input-text-lg description" })
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Confirmar</button>
-                    <a href="@Url.Action("Edit", "Requisition", new { id = Model.Requsiciones.FirstOrDefault().Id })" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Confirm</button>
+                    <a href="@Url.Action("Edit", "Requisition", new { id = Model.Requisitions.FirstOrDefault().Id })" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
                 </div>
             }
         </div>
