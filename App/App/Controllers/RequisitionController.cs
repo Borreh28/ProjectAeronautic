@@ -2,6 +2,7 @@
 using App.Entities;
 using App.ViewModels;
 using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace App.Controllers
@@ -12,13 +13,14 @@ namespace App.Controllers
         RequisitionLine requisitionLine;
         RequisitionForm requisitionForm;
 
-        RequisitionRepository requisitionRepository;
-        RequisitionLineRepository requisitionLineRepository;
-        SupplierRepository supplierRepository;
         DepartmentRepository departmentRepository;
-        StatusRepository statusRepository;
         PeriodRepository periodRepository;
         PriorityRepository priorityRepository;
+        ProductRepository productRepository;
+        RequisitionRepository requisitionRepository;
+        RequisitionLineRepository requisitionLineRepository;
+        StatusRepository statusRepository;
+        SupplierRepository supplierRepository; 
 
         public RequisitionController()
         {
@@ -26,13 +28,14 @@ namespace App.Controllers
             requisitionLine = new RequisitionLine();
             requisitionForm = new RequisitionForm();
 
-            requisitionRepository = new RequisitionRepository();
-            requisitionLineRepository = new RequisitionLineRepository();
-            supplierRepository = new SupplierRepository();
             departmentRepository = new DepartmentRepository();
-            statusRepository = new StatusRepository();
             periodRepository = new PeriodRepository();
             priorityRepository = new PriorityRepository();
+            productRepository = new ProductRepository();
+            requisitionRepository = new RequisitionRepository();
+            requisitionLineRepository = new RequisitionLineRepository();
+            statusRepository = new StatusRepository();
+            supplierRepository = new SupplierRepository();
         }
 
         public ActionResult All()
@@ -90,10 +93,14 @@ namespace App.Controllers
 
         public ActionResult Edit(int id)
         {
+            var requisition = requisitionRepository.GetById(id);
+            int supplierId = requisition.FirstOrDefault().SupplierId;
+
             requisitionForm.Requisitions = requisitionRepository.GetById(id);
             requisitionForm.Lines = requisitionLineRepository.GetByRequisitionId(id);
             requisitionForm.Suppliers = supplierRepository.GetAll();
             requisitionForm.Departments = departmentRepository.GetAll();
+            requisitionForm.Products = productRepository.GetAllBySupplierId(supplierId);
 
             return View(requisitionForm);
         }

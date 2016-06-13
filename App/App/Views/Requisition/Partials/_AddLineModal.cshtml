@@ -5,68 +5,74 @@
         <div class="modal-content" style="transform:translate(0px,50px);">
             @using (Html.BeginForm("Add", "RequisitionLine", FormMethod.Post))
             {
-                @Html.Hidden("ReqId", Model.Requsiciones.FirstOrDefault().Id)
-                int NoLinea = Model.Requsiciones.FirstOrDefault().Lineas.Where(w => w.RequisicionId == Model.Requsiciones.FirstOrDefault().Id).Count() + 1;
+                @Html.Hidden("RequisitionId", Model.Requisitions.FirstOrDefault().Id)
+                int NoLinea = Model.Requisitions.FirstOrDefault().Lines.Where(w => w.RequisitionId == Model.Requisitions.FirstOrDefault().Id).Count() + 1;
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dissmiss="modal">&times;</button>
-                    <h3 class="modal-title">Nueva Linea</h3>
+                    <h3 class="modal-title">New Line</h3>
                 </div>
                 <div class="modal-body">
-                    <p class="text-danger">Todos los campos son obligatorios*</p>
+                    <p class="text-danger">All fields are required*</p>
                     <br />
                     <div class="row margin-height">
                         <div class="col-md-1"></div>
                         <div class="col-md-4">
-                            <label>Linea:</label>
+                            <label>Line:</label>
                         </div>
                         <div class="col-md-7">
-                            <input type="text" value="@NoLinea" name="Linea" readonly disabled/>
+                            <input type="text" style="width:100%;" value="@NoLinea" name="Line" readonly disabled/>
                         </div>
                     </div>
                     <div class="row margin-height">
                         <div class="col-md-1"></div>
                         <div class="col-md-4">
-                            <label>No. Parte:</label>
+                            <label>Product:</label>
                         </div>
                         <div class="col-md-7">
-                            <input type="text" value="" name="ParteId" readonly disabled/>
-                        </div>
-                        <div class="col-md-3" style="margin-top:10px;">
-                            <a href="#Search" class="btn-sm btn-primary"><span class="glyphicon glyphicon-search"></span> Buscar</a>
+                            <div class="selectContainer">
+                                <select class="getValue getCostPrice getProductName" style="width:100%;" name="Price">
+                                    <option value="">- Select a Product -</option>
+                                    @foreach (var item in Model.Products)
+                                    {
+                                        <option value="@Html.DisplayFor(modelItem => item.CostPrice)">@Html.DisplayFor(modelItem => item.Name)</option>
+                                    }
+                                </select>
+                            </div>
+                            <input type="hidden" class="product" value="" name="Product" readonly />
                         </div>
                     </div>
                     <div class="row margin-height">
                         <div class="col-md-1"></div>
                         <div class="col-md-4">
-                            <label>Cantidad:</label>
+                            <label>Quantity:</label>
                         </div>
                         <div class="col-md-7">
-                            <input type="text" value="" name="Cantidad" />
+                            <input type="text" style="width:100%;" value="" name="Quantity" />
                         </div>
                     </div>
                     <div class="row margin-height">
                         <div class="col-md-1"></div>
                         <div class="col-md-4">
-                            <label>Precio de Venta:</label>
+                            <label>Price:</label>
                         </div>
                         <div class="col-md-7">
-                            <input type="text" value="" name="Precio" readonly disabled/>
+                            <input type="text" class="costPrice" style="width:100%;" value="" readonly disabled/>
                         </div>
                     </div>
                     <div class="row margin-height">
                         <div class="col-md-1"></div>
                         <div class="col-md-4">
-                            <label>Descripcion:</label>
+                            <label>Description:</label>
                         </div>
                         <div class="col-md-7">
-                            @Html.TextArea("Descripcion", htmlAttributes: new { @class = "input-text-lg", @readonly = "true", @disabled = "true"})
+                            @Html.TextArea("Description", htmlAttributes: new { @class = "input-text-lg" })
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Confirmar</button>
-                    <a href="@Url.Action("Edit", "Requisition", new { id = Model.Requsiciones.FirstOrDefault().Id })" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Confirm</button>
+                    <a href="@Url.Action("Edit", "Requisition", new { id = Model.Requisitions.FirstOrDefault().Id })" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
                 </div>
             }
         </div>
