@@ -5,11 +5,6 @@ namespace App.Entities
 {
     public class RequisitionRule
     {
-        public RequisitionRule()
-        {
-            Requisitions = new List<Requisition>();
-        }
-
         public int Id { get; set; }
 
         public int RequisitionId { get; set; }
@@ -20,6 +15,6 @@ namespace App.Entities
         public int UpdatedBy { get; set; }
         public DateTime Updated { get; set; }
 
-        public virtual ICollection<Requisition> Requisitions { get; set; }
+        public virtual Requisition Requisition { get; set; }
     }
 }

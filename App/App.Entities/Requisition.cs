@@ -38,5 +38,6 @@ namespace App.Entities
         public virtual Status Status { get; set; }
         public virtual Priority Priority { get; set; }
         public virtual ICollection<RequisitionLine> Lines { get; set; }
+        public virtual ICollection<RequisitionRule> Rules { get; set; }
     }
 }
