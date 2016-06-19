@@ -70,6 +70,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DepartmentRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\RequisitionRuleRepository.cs" />
     <Compile Include="Repositories\StatusRepository.cs" />
     <Compile Include="Repositories\PeriodRepository.cs" />
     <Compile Include="Repositories\PriorityRepository.cs" />
