@@ -41,3 +41,4 @@ C:\Users\alan\Desktop\Development\VertLife\AeroRepo\App\App.DAL\obj\Debug\App.DA
 C:\Users\alan\Desktop\Development\VertLife\AeroRepo\App\App.DAL\obj\Debug\App.DAL.pdb
 C:\Users\alan\Desktop\Development\VertLife\AeroRepo\App\App.DAL\obj\Debug\App.DAL.Migrations.Init.resources
 C:\Users\alan\Desktop\Development\VertLife\AeroRepo\App\App.DAL\obj\Debug\App.DAL.csproj.GenerateResource.Cache
+C:\Users\alan\Desktop\Development\VertLife\AeroRepo\App\App.DAL\obj\Debug\App.DAL.Migrations.DBv10.resources
