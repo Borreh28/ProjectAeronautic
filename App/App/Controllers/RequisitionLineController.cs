@@ -1,6 +1,5 @@
 ﻿using App.DAL;
 using App.Entities;
-using App.ViewModels;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -11,31 +10,19 @@ namespace App.Controllers
     {
         Requisition requisition;
         RequisitionLine requisitionLine;
-        RequisitionForm requisitionForm;
         
-        DepartmentRepository departmentRepository;
-        PeriodRepository periodRepository;
-        PriorityRepository priorityRepository;
         ProductRepository productRepository;
         RequisitionRepository requisitionRepository;
         RequisitionLineRepository requisitionLineRepository;
-        StatusRepository statusRepository;
-        SupplierRepository supplierRepository;
 
         public RequisitionLineController()
         {
             requisition = new Requisition();
             requisitionLine = new RequisitionLine();
-            requisitionForm = new RequisitionForm();
             
-            departmentRepository = new DepartmentRepository();
-            periodRepository = new PeriodRepository();
-            priorityRepository = new PriorityRepository();
             productRepository = new ProductRepository();
             requisitionRepository = new RequisitionRepository();
             requisitionLineRepository = new RequisitionLineRepository();
-            statusRepository = new StatusRepository();
-            supplierRepository = new SupplierRepository();
         }
 
         [HttpPost]

@@ -11,6 +11,7 @@ namespace App.ViewModels
         public virtual IEnumerable<Product> Products { get; set; }
         public virtual IEnumerable<Requisition> Requisitions { get; set; }
         public virtual IEnumerable<RequisitionLine> Lines { get; set; }
+        public virtual IEnumerable<RequisitionRule> Rules { get; set; }
         public virtual IEnumerable<Status> Status { get; set; }
         public virtual IEnumerable<Supplier> Suppliers { get; set; }
     }

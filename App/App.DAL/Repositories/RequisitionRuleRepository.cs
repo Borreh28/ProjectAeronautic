@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
-namespace App.DAL.Repositories
+namespace App.DAL
 {
     public class RequisitionRuleRepository
     {

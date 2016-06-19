@@ -156,6 +156,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\RequisitionController.cs" />
     <Compile Include="Controllers\RequisitionLineController.cs" />
+    <Compile Include="Controllers\RequisitionRuleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
