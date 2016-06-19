@@ -13,6 +13,7 @@ namespace App.DAL
         public DbSet<Product> Products { get; set; }
         public DbSet<Requisition> Requisitions { get; set; }
         public DbSet<RequisitionLine> Lines { get; set; }
+        public DbSet<RequisitionRule> Rules { get; set; }
         public DbSet<Status> Status { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
 
@@ -31,6 +32,7 @@ namespace App.DAL
             new ProductMapper(modelBuilder);
             new RequisitionMapper(modelBuilder);
             new RequisitionLineMapper(modelBuilder);
+            new RequisitionRuleMapper(modelBuilder);
             new StatusMapper(modelBuilder);
             new SupplierMapper(modelBuilder);
         }

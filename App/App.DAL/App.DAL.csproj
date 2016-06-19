@@ -51,6 +51,7 @@
     <Compile Include="Context.cs" />
     <Compile Include="Mapping\DepartmentMapper.cs" />
     <Compile Include="Mapping\ProductMapper.cs" />
+    <Compile Include="Mapping\RequisitionRuleMapper.cs" />
     <Compile Include="Mapping\StatusMapper.cs" />
     <Compile Include="Mapping\PeriodMapper.cs" />
     <Compile Include="Mapping\PriorityMapper.cs" />
