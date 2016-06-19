@@ -10,7 +10,6 @@ namespace App.Controllers
     public class RequisitionController : Controller
     {
         Requisition requisition;
-        RequisitionLine requisitionLine;
         RequisitionForm requisitionForm;
 
         DepartmentRepository departmentRepository;
@@ -19,13 +18,13 @@ namespace App.Controllers
         ProductRepository productRepository;
         RequisitionRepository requisitionRepository;
         RequisitionLineRepository requisitionLineRepository;
+        RequisitionRuleRepository requisitionRuleRepository;
         StatusRepository statusRepository;
         SupplierRepository supplierRepository; 
 
         public RequisitionController()
         {
             requisition = new Requisition();
-            requisitionLine = new RequisitionLine();
             requisitionForm = new RequisitionForm();
 
             departmentRepository = new DepartmentRepository();
@@ -34,6 +33,7 @@ namespace App.Controllers
             productRepository = new ProductRepository();
             requisitionRepository = new RequisitionRepository();
             requisitionLineRepository = new RequisitionLineRepository();
+            requisitionRuleRepository = new RequisitionRuleRepository();
             statusRepository = new StatusRepository();
             supplierRepository = new SupplierRepository();
         }
@@ -49,6 +49,7 @@ namespace App.Controllers
         {
             requisitionForm.Requisitions = requisitionRepository.GetById(id);
             requisitionForm.Lines = requisitionLineRepository.GetByRequisitionId(id);
+            requisitionForm.Rules = requisitionRuleRepository.GetAllByRequisitionId(id);
 
             return View(requisitionForm);
         }

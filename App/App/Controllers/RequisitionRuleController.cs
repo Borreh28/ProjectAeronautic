@@ -44,6 +44,8 @@ namespace App.Controllers
             requisitionRule.UpdatedBy = 0;
             requisitionRule.Updated = DateTime.Now;
 
+            requisitionRuleRepository.Add(requisitionRule);
+
             return RedirectToAction("Details", "Requisition", new { id = requisitionRule.RequisitionId });
         }
     }

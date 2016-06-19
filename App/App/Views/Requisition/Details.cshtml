@@ -7,6 +7,13 @@
     int Number = 0;
     decimal SubTotal = 0;
     decimal Total = 0;
+
+    bool WasSent = false;
+
+    if (Model.Rules.ToList().Any())
+    {
+        WasSent = true;
+    }
 }
 
 <h1></h1>
@@ -29,7 +36,19 @@
 
             </div>
             <div class="col-md-2">
-                <a href="#SendForApproval" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;Send for Approval</a>
+                @if (WasSent)
+                {
+                    @*<label class="text-danger">This requisition was sent for approval to: @Model.Rules.FirstOrDefault().AuthorizationState</label>*@
+                }
+                else
+                {
+                    using (Html.BeginForm("Add", "RequisitionRule", FormMethod.Post))
+                    {
+                        @Html.Hidden("RequisitionId", Model.Requisitions.FirstOrDefault().Id)
+                        @Html.Hidden("Total", Model.Requisitions.FirstOrDefault().Total)
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span> Send for Approval</button>
+                    }
+                }
             </div>
         </div>
         <div class="row">
@@ -281,12 +300,21 @@
     <div class="panel-footer">
         <div class="row">
             <div class="col-md-9"></div>
-            <div class="col-md-3 pull-right">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="@Url.Action("Edit", "Requisition", new { id = Model.Requisitions.FirstOrDefault().Id})" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-                &nbsp;&nbsp;
-                <a href="#Delete" class="btn btn-primary" data-toggle="modal" data-target="#DeleteReqModal"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-            </div>
+            @if (WasSent)
+            {
+                <div class="col-md-3 pull-right">
+                    @*<label class="text-danger">This requisition cannot be edited or deleted.</label>*@
+                </div>
+            }
+            else
+            {
+                <div class="col-md-3 pull-right">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="@Url.Action("Edit", "Requisition", new { id = Model.Requisitions.FirstOrDefault().Id})" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                    &nbsp;&nbsp;
+                    <a href="#Delete" class="btn btn-primary" data-toggle="modal" data-target="#DeleteReqModal"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                </div>
+            }
         </div>
     </div>
 </div>
